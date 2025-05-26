@@ -153,7 +153,7 @@ CHECKPOINT="checkpoints/step-5000-checkpoint-point-force.pt"
 
 # you can change this to the list of csvs you want to run inference on.
 IMAGE_CSVS=(
-  "datasets/point-force/test/material_understanding_balls_rolling_quant/wood/_materialballrollingballonwoodbowling1_obj1_prompt1.csv"
+  "datasets/point-force/test/mass_understanding_quantitative/wood/_materialballrollingballonwoodbowling1_obj1_prompt1.csv"
 )
 
 for image_csv in "${IMAGE_CSVS[@]}"; do
@@ -272,8 +272,8 @@ RESUME_FROM_CHECKPOINT="output/point_force/2025-05-08_03-46-47/step-4500-checkpo
 
 bash scripts/train_4_gpu.sh \
     --force_type "point_force" \
-    --video_root_dir "datasets/wind-force/train/wind_force_15359" \
-    --csv_path "datasets/wind-force/train/wind_force_15359.csv" \
+    --video_root_dir "datasets/point-force/train/point_force_23000" \
+    --csv_path "datasets/point-force/train/point_force_23000.csv" \
     --pretrained_controlnet_path $RESUME_FROM_CHECKPOINT
 ```
 
