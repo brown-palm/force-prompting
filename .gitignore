@@ -1,0 +1,17 @@
+**/.DS_Store
+conda-env
+.cache
+**/precomputed_embeddings
+*.pyc
+datasets/point-force/train
+datasets/wind-force/train
+output
+wandb
+scripts/build_synthetic_datasets/wind_model_waving_flags/HDRIs
+scripts/build_synthetic_datasets/poke_model_rolling_balls/football_textures
+scripts/build_synthetic_datasets/poke_model_rolling_balls/ground_textures
+.env
+checkpoints
+datasets/point-force/test/custom
+datasets/wind-force/test/custom
+scripts/.nfsa2a3cc88ecd43d9e0000001f

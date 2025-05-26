@@ -1,0 +1,169 @@
+{
+    "forrest_ground_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.0_force_30.56_coordx_343_coordy_220/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sunlit grassy field. It begins to roll forward gently, picking up speed as it moves across the uneven terrain. The sunlight casts dynamic shadows, adding depth to their movement."
+    },
+    "aerial_grass_rock_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.0_force_57.26_coordx_159_coordy_266/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across a sunlit, textured surface, casting a soft shadow beneath it. As it moves, it gradually picks up speed, navigating the subtle undulations of the ground. The ball's smooth, glossy surface glimmers in the light, creating a dynamic play of reflections."
+    },
+    "gravel_ground_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.1_force_11.71_coordx_443_coordy_410/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface, casting a soft shadow beneath it. Suddenly, the ball begins to roll, its path slightly curving as it navigates the uneven terrain. As the ball gains momentum, it kicks up small puffs of sand, leaving a faint trail behind. The scene is serene, with the gentle movement of the ball adding a dynamic element to the tranquil setting."
+    },
+    "red_dirt_mud_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.1_force_24.49_coordx_571_coordy_279/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a textured, sandy surface under the bright sun. The ball begins to roll gently across the ground, its shadow shifting as it moves. As the ball continues its journey, it navigates around small pebbles, creating a soft crunching sound with each rotation. The sunlight glints off its surface against the earthy backdrop."
+    },
+    "grass_path_3_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.1_force_51.74_coordx_493_coordy_339/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll across the rough, textured ground, its surface glistening slightly in the sunlight. The ball's path is slightly curved, suggesting a gentle push or a breeze guiding its motion. Small patches of grass and pebbles dot the terrain, adding subtle obstacles that the ball navigates around with ease. The scene is calm, with the sound of the ball softly skimming over the ground, creating a serene and rhythmic motion."
+    },
+    "snow_02_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.1_force_54.82_coordx_402_coordy_127/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across a snowy surface, leaving a faint trail behind. The texture of the snow crunches subtly under its weight, and the ball's path is slightly erratic, as if guided by a gentle breeze. The scene is serene, with the quiet ambiance of a winter day enveloping the motion."
+    },
+    "ground_grey_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.1_force_55.10_coordx_428_coordy_405/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across the textured concrete surface, casting a soft shadow beneath it. The sunlight highlights its smooth surface, adding a glint as it continues its path, gradually picking up speed. The scene is calm, emphasizing the solitary journey of the ball."
+    },
+    "coral_gravel_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.2_force_63.00_coordx_578_coordy_351/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a textured, sandy surface and begins to roll gently. As it moves, it leaves a faint trail in the sand, causing a ball to shift slightly. The scene is serene, with the sun casting soft light, highlighting the textures of the sand."
+    },
+    "red_mud_stones_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.3_force_23.21_coordx_128_coordy_351/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a dry, cracked earth surface. It begins to roll slowly across the rough terrain, its shadow shifting as it moves. As the ball gains momentum, it navigates around small rocks and patches of uneven soil, creating a gentle trail in the dirt."
+    },
+    "aerial_rocks_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.3_force_36.94_coordx_454_coordy_333/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a textured, rocky surface. It begins to roll slowly, navigating the uneven terrain."
+    },
+    "coast_sand_03_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.3_force_42.37_coordx_341_coordy_168/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across the textured, sandy surface, casting a soft shadow beneath it. The sunlight glints off the ball, creating a playful dance of light and shadow on the ground. The movement is smooth and deliberate, as if guided by an unseen hand, leaving faint trails in the sand behind."
+    },
+    "brown_mud_leaves_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.4_force_17.11_coordx_559_coordy_280/frame0001.png",
+        "optimized_prompt": "A gentle breeze stirs the scene as a heavy bowling ball begins to roll forward across the sunlit patch of earth. Its surface glistens slightly under the warm sunlight, casting a soft shadow on the ground. The movement causes small tufts of grass to sway gently in their wake."
+    },
+    "coast_land_rocks_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.4_force_44.50_coordx_175_coordy_210/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a rough, earthy surface. It begins to roll gently across the ground, navigating the uneven terrain. As the ball continues its journey, it occasionally bounces lightly over small bumps, creating a rhythmic motion."
+    },
+    "forrest_ground_03_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.5_force_19.29_coordx_422_coordy_156/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a dusty, sunlit ground. As the scene unfolds, the ball begins to roll. It moves steadily, casting a soft shadow on the ground. The texture of the earth crunches softly beneath it, creating a gentle rhythm as it progresses."
+    },
+    "forest_floor_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.5_force_38.19_coordx_169_coordy_332/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a ground covered with scattered autumn leaves. It begins to roll gently across the textured surface. As it moves, it displaces the dry leaves, creating a soft rustling sound. The scene is serene, with the quiet motion of the ball contrasting against the stillness of the surrounding environment."
+    },
+    "coast_sand_04_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.5_force_56.08_coordx_556_coordy_256/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a dusty, textured ground. Suddenly, it begins to roll, its surface catching the light as it moves. The ball navigates around small pebbles and uneven patches, creating a soft, rhythmic sound as it travels. It continues its journey, leaving a faint trail in the dust behind it."
+    },
+    "shell_floor_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.5_force_58.08_coordx_409_coordy_279/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface. The ball begins to roll forward, leaving a faint trail in the sand. The ball continues its journey, picking up speed as it travels across the textured ground, casting a small shadow in the bright sunlight."
+    },
+    "rock_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.6_force_18.16_coordx_314_coordy_124/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll across the smooth concrete surface, its glossy exterior catching the sunlight. The ball glides across the ground, leaving a faint trail of dust in its wake."
+    },
+    "forest_leaves_02_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.7_force_30.35_coordx_238_coordy_269/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a patchy, sunlit ground. It begins to roll gently across the uneven surface, its movement causing the shadows to shift subtly. As it picks up speed, it creates a playful dance of shadows on the earthy terrain. The ball's path is unpredictable, occasionally bouncing slightly as it encounters small bumps and twigs, adding a lively rhythm to its journey."
+    },
+    "rocky_trail_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.7_force_37.28_coordx_245_coordy_251/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll across the rough, textured ground, its surface catching the light as it moves. It navigates over small stones and pebbles. The ball continues its journey, creating a subtle trail in the dust as it picks up speed."
+    },
+    "leaves_forest_ground_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.8_force_58.58_coordx_418_coordy_150/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a ground covered with autumn leaves. The ball begins to roll gently across the leaf-strewn surface, its path slightly erratic as it navigates the uneven terrain. The leaves rustle softly beneath it, creating a gentle, crackling sound. As the ball continues its journey, it weaves around clusters of leaves, occasionally bouncing slightly as it encounters small obstacles."
+    },
+    "aerial_beach_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.9_force_36.77_coordx_277_coordy_302/frame0001.png",
+        "optimized_prompt": "A gentle breeze sweeps across the sandy surface, causing the heavy bowling ball to slowly roll. As it moves, it leaves a faint trail in the textured sand. The scene is serene, with the sound of the wind softly rustling in the background, creating a peaceful atmosphere."
+    },
+    "clean_pebbles_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_0.9_force_56.39_coordx_453_coordy_213/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a textured, gravel-like surface. It begins to roll slowly. As the ball gains momentum, it approaches with increasing speed, creating a gentle crunching sound as it moves over the gravel."
+    },
+    "aerial_ground_rock_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.0_force_12.47_coordx_355_coordy_325/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across the dusty, uneven ground, its surface catching the light as it moves. As the ball continues its journey, it creates a subtle trail in the dust. The scene is quiet, with only the soft sound of the ball's movement breaking the stillness of the landscape."
+    },
+    "coral_ground_02_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.0_force_18.70_coordx_215_coordy_233/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rest on a textured, sandy surface. A ball begins to roll gently across the uneven ground. As it moves, it navigates small dips and rises, casting a shifting shadow that dances with the sunlight. The scene is serene, with the sound of the ball softly crunching over the sand, creating a rhythmic, calming ambiance."
+    },
+    "park_dirt_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.0_force_21.93_coordx_542_coordy_274/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll gently across a sunlit, sandy surface, leaving a faint trail behind. As it moves, it weaves slightly. The sunlight casts soft shadows, creating a serene and playful atmosphere as the ball continues its leisurely journey across the ground."
+    },
+    "aerial_wood_snips_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.0_force_56.15_coordx_532_coordy_214/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll across a sandy surface, leaving a faint trail behind. The texture of the sand shifts subtly as the ball moves, creating small ripples and disturbances. The sunlight casts a warm glow, highlighting the ball's smooth surface and the intricate patterns in the sand."
+    },
+    "dirt_aerial_03_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.0_force_60.56_coordx_394_coordy_226/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sunlit concrete surface. It begins to roll, its shadow shifting subtly as it moves. The scene is filled with a sense of anticipation and movement as the ball glides smoothly across the ground."
+    },
+    "sandy_gravel_02_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.1_force_22.51_coordx_242_coordy_123/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface, casting a shadow beneath it. As the scene unfolds, the ball begins to roll smoothly across the sand, leaving a faint trail behind. The movement is gentle, propelled by a light breeze or an unseen force. The ball continues its journey, navigating the subtle undulations of the sand, creating a serene and rhythmic motion."
+    },
+    "floor_pebbles_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.1_force_37.07_coordx_312_coordy_224/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a gravelly surface. It begins to roll, its surface catching the light as it moves. The scene is serene, with the subtle crunch of gravel under the ball's movement adding a rhythmic sound to the tranquil setting."
+    },
+    "stone_wall_03_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.3_force_10.02_coordx_167_coordy_323/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll smoothly across the textured, sandy surface, leaving a faint trail behind. The sunlight casts soft shadows, enhancing the dynamic movement of the scene."
+    },
+    "pebble_ground_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.4_force_12.40_coordx_459_coordy_405/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface. Suddenly, the ball begins to roll, its shadow shifting subtly as it moves. The ball picks up speed, its path curving slightly as it navigates the uneven terrain, leaving faint tracks in the sand."
+    },
+    "coast_sand_02_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.4_force_46.13_coordx_330_coordy_126/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface. It begins to roll gently across the ground, leaving a faint trail in the sand. As it moves, the sunlight catches its surface, creating a subtle shimmer. The scene is calm, with the gentle movement of the ball adding a sense of quiet dynamism to the otherwise still setting."
+    },
+    "snow_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.5_force_57.50_coordx_203_coordy_98/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a textured, snowy surface, casting a shadow in the bright sunlight. The rolling ball's path is slightly erratic, influenced by the uneven terrain, creating a dynamic interplay of motion and stillness in the scene."
+    },
+    "rocks_ground_03_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.6_force_41.77_coordx_306_coordy_106/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a rough, gravelly surface, casting a distinct shadow under the bright sunlight. Suddenly, the ball begins to roll, its movement causing small pebbles to scatter. As it gains momentum, it weaves slightly, navigating the uneven terrain with a gentle bounce."
+    },
+    "forest_leaves_04_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.7_force_18.30_coordx_395_coordy_370/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sunlit patch of dry, textured grass, casting a soft shadow beneath it. As a gentle breeze stirs, the ball begins to roll slowly across the uneven ground, its surface glinting in the sunlight. The ball continues its journey, navigating small tufts of grass and twigs, creating a subtle rustling sound as it moves."
+    },
+    "rock_08_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.9_force_23.15_coordx_522_coordy_410/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball begins to roll slowly across the textured, sandy surface, leaving faint tracks behind. The sunlight glints off the surface, highlighting the subtle undulations in the sand."
+    },
+    "terrain_red_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_1.9_force_43.34_coordx_334_coordy_218/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a gravel surface. The ball begins to roll gently across the uneven terrain, its path slightly unpredictable due to the small stones beneath. The scene is serene, with the sound of gravel crunching softly under the ball's movement."
+    },
+    "sand_01_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_10.3_force_53.89_coordx_424_coordy_145/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a dusty, textured ground under the bright sun. The ball begins to roll slowly across the uneven surface. As it gains momentum, it bounces slightly over small bumps and divots, casting a moving shadow that dances along with it. The scene is filled with the soft sound of the ball's movement, a gentle rustling as it navigates the terrain."
+    },
+    "rock_2_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_100.6_force_58.89_coordx_584_coordy_273/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a rough, sandy surface. The ball begins to roll slowly. Its movement is deliberate, casting a small shadow that shifts with its motion. As the ball continues its journey, it navigates the uneven terrain, occasionally bouncing slightly over small bumps, adding a dynamic element to the scene."
+    },
+    "dirt_floor_4k": {
+        "first_frame_path": "/users/ngillman/scratch/2025-03-31-blender-render-soccer/pngs/angle_102.7_force_49.14_coordx_129_coordy_350/frame0001.png",
+        "optimized_prompt": "A heavy bowling ball rests on a sandy surface and begins to roll, its smooth surface glinting under the sunlight. As it gains momentum, it casts a small shadow on the ground. The gentle breeze stirs the sand slightly, creating a soft, whispering sound as the ball moves steadily across the terrain."
+    },
+    "daksh_green_grass" : {
+        "optimized_prompt" : "A soccer ball rests on a lush green field, casting soft shadows beneath it. Suddenly, it begins to roll, its surface glinting subtly in the sunlight. As it gains momentum, it moves smoothly across the grass. The gentle rustling of the grass accompanies its journey, creating a serene yet dynamic scene."
+    } 
+}

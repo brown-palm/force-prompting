@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unified Image Processing Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+            border: 2px solid #666;
+            background: #f0f0f0;
+            line-height: 0;
+        }
+        #selection {
+            position: absolute;
+            border: 2px solid #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            pointer-events: all;
+            cursor: move;
+        }
+        #preview {
+            max-width: 100%;
+        }
+        #croppedPreview {
+            max-width: 100%;
+            display: none;
+            border: 2px solid #333;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        input[type=file], select {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .flex-item {
+            flex: 1;
+            min-width: 300px;
+        }
+        .image-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .parameter-inputs {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .input-group label {
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unified Image Processing Tool</h1>
+        
+        <!-- Step 1: Image Upload and Cropping -->
+        <div class="card">
+            <div class="card-title">Step 1: Upload and Crop Image</div>
+            <div class="controls">
+                <input type="file" id="imageInput" accept="image/*">
+                <select id="aspectRatio">
+                    <option value="1.5">1.5:1 (CogVideoX) - Outputs 720x480 px</option>
+                    <option value="1.7708">1.7708:1 (CogVideoX1.5) - Outputs 1360×768 px</option>
+                </select>
+                <button id="saveBtn" class="btn" disabled>Save Selection</button>
+            </div>
+            <div class="image-container">
+                <img id="preview">
+                <div id="selection"></div>
+            </div>
+        </div>
+        
+        <!-- Step 2: Cropped Image, Prompt, and Weather Parameters -->
+        <div class="card" id="stepTwoCard" style="display: none;">
+            <div class="card-title">Step 2: Optimize Prompt and Set Weather Parameters</div>
+            <div class="flex-container">
+                <div class="flex-item">
+                    <h3>Cropped Image</h3>
+                    <img id="croppedPreview">
+                    <div class="image-info" id="imageInfo">
+                        Cropped image information will appear here
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h3>Prompt Optimization</h3>
+                    <textarea id="promptInput" placeholder="Enter your prompt here..."></textarea>
+                    <button id="optimizeBtn" class="btn">Optimize Prompt</button>
+                    <div id="optimizationStatus" class="status"></div>
+                    
+                    <h3>Results</h3>
+                    <textarea id="optimizedPrompt" placeholder="Optimized prompt will appear here..."></textarea>
+                    <div class="parameter-inputs">
+                        <div class="input-group">
+                            <label for="windAngleInput">Wind Angle:</label>
+                            <input type="number" id="windAngleInput" value="0.0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="windSpeedInput">Wind Speed:</label>
+                            <input type="number" id="windSpeedInput" value="0.5" step="0.01">
+                        </div>
+                    </div>
+                    <button id="writeCSVBtn" class="btn" disabled>Write CSV</button>
+                    <div id="csvStatus" class="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const preview = document.getElementById('preview');
+        const selection = document.getElementById('selection');
+        const imageInput = document.getElementById('imageInput');
+        const aspectRatioInput = document.getElementById('aspectRatio');
+        const saveBtn = document.getElementById('saveBtn');
+        const stepTwoCard = document.getElementById('stepTwoCard');
+        const croppedPreview = document.getElementById('croppedPreview');
+        const promptInput = document.getElementById('promptInput');
+        const optimizeBtn = document.getElementById('optimizeBtn');
+        const optimizedPrompt = document.getElementById('optimizedPrompt');
+        const writeCSVBtn = document.getElementById('writeCSVBtn');
+        const imageInfo = document.getElementById('imageInfo');
+        const optimizationStatus = document.getElementById('optimizationStatus');
+        const csvStatus = document.getElementById('csvStatus');
+        const windAngleInput = document.getElementById('windAngleInput');
+        const windSpeedInput = document.getElementById('windSpeedInput');
+        
+        // Variables for selection and cropping
+        let isDrawing = false;
+        let isDragging = false;
+        let startX, startY;
+        let selectionOffsetX, selectionOffsetY;
+        let currentImagePath = '';
+        let promptCounter = 0;
+        
+        // Get actual scaled dimensions of the image
+        function getScaledImageDimensions() {
+            const rect = preview.getBoundingClientRect();
+            const scale = rect.width / preview.naturalWidth;
+            return {
+                width: rect.width,
+                height: preview.naturalHeight * scale,
+                scale: scale
+            };
+        }
+        
+        // Create a max-sized selection based on the aspect ratio
+        function createMaxSizedSelection() {
+            const dims = getScaledImageDimensions();
+            const aspectRatio = parseFloat(aspectRatioInput.value);
+            
+            let width, height;
+            const BORDER_WIDTH = 10;  // Border width in pixels
+            
+            // If image is wider than tall (accounting for aspect ratio)
+            if (dims.width / dims.height > aspectRatio) {
+                // Height is the limiting factor
+                height = dims.height - (2 * BORDER_WIDTH);
+                width = height * aspectRatio;
+            } else {
+                // Width is the limiting factor
+                width = dims.width - (2 * BORDER_WIDTH);
+                height = width / aspectRatio;
+            }
+            
+            // Center the selection with a margin to prevent overflow
+            const left = Math.max(BORDER_WIDTH, (dims.width - width) / 2);
+            const top = Math.max(BORDER_WIDTH, (dims.height - height) / 2);
+            
+            // Apply the calculated dimensions
+            selection.style.left = `${left}px`;
+            selection.style.top = `${top}px`;
+            selection.style.width = `${width}px`;
+            selection.style.height = `${height}px`;
+            selection.style.display = 'block';
+        }
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.onload = () => {
+                    saveBtn.disabled = false;
+                    preview.style.width = '100%';
+                    preview.style.height = 'auto';
+                    
+                    // Create maximum sized selection after image is loaded
+                    setTimeout(createMaxSizedSelection, 100); // Small delay to ensure image dimensions are calculated
+                };
+            }
+        });
+        
+        aspectRatioInput.addEventListener('change', () => {
+            // Update selection with new aspect ratio
+            if (preview.complete && preview.naturalWidth) {
+                createMaxSizedSelection();
+            }
+        });
+        
+        preview.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            isDrawing = true;
+            isDragging = false;
+            
+            const rect = preview.getBoundingClientRect();
+            startX = e.clientX - rect.left;
+            startY = e.clientY - rect.top;
+            
+            selection.style.left = `${startX}px`;
+            selection.style.top = `${startY}px`;
+            selection.style.width = '0px';
+            selection.style.height = '0px';
+            selection.style.display = 'block';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDrawing && !isDragging) return;
+            
+            const rect = preview.getBoundingClientRect();
+            const dims = getScaledImageDimensions();
+            
+            if (isDragging) {
+                const selectionRect = selection.getBoundingClientRect();
+                const width = selectionRect.width;
+                const height = selectionRect.height;
+                
+                let newX = e.clientX - rect.left - selectionOffsetX;
+                let newY = e.clientY - rect.top - selectionOffsetY;
+                
+                const BORDER_WIDTH = 2;  // Border width in pixels
+                // Keep selection within image bounds
+                newX = Math.max(BORDER_WIDTH, Math.min(newX, dims.width - width - BORDER_WIDTH));
+                newY = Math.max(BORDER_WIDTH, Math.min(newY, dims.height - height - BORDER_WIDTH));
+                
+                selection.style.left = `${newX}px`;
+                selection.style.top = `${newY}px`;
+                return;
+            }
+            
+            // Calculate current position
+            let currentX = e.clientX - rect.left;
+            let currentY = e.clientY - rect.top;
+            
+            // Calculate width and height maintaining aspect ratio
+            let width = Math.abs(currentX - startX);
+            let height = width / aspectRatioInput.value;
+            
+            // Calculate final coordinates based on direction
+            let finalX = startX;
+            let finalY = startY;
+            
+            if (currentX < startX) {
+                finalX = currentX;
+                width = startX - finalX;
+                height = width / aspectRatioInput.value;
+            }
+            
+            if (currentY < startY) {
+                finalY = currentY;
+                height = startY - finalY;
+                width = height * aspectRatioInput.value;
+            }
+            
+            // Enforce boundaries
+            const BORDER_WIDTH = 2;  // Border width in pixels
+            
+            if (finalX < BORDER_WIDTH) {
+                finalX = BORDER_WIDTH;
+                width = currentX > startX ? startX - BORDER_WIDTH : currentX - finalX;
+                height = width / aspectRatioInput.value;
+            }
+            if (finalY < BORDER_WIDTH) {
+                finalY = BORDER_WIDTH;
+                height = currentY > startY ? startY - BORDER_WIDTH : currentY - finalY;
+                width = height * aspectRatioInput.value;
+            }
+            if (finalX + width > rect.width - BORDER_WIDTH) {
+                width = rect.width - BORDER_WIDTH - finalX;
+                height = width / aspectRatioInput.value;
+            }
+            if (finalY + height > rect.height - BORDER_WIDTH) {
+                height = rect.height - BORDER_WIDTH - finalY;
+                width = height * aspectRatioInput.value;
+            }
+            
+            // Apply the calculated dimensions
+            selection.style.left = `${finalX}px`;
+            selection.style.top = `${finalY}px`;
+            selection.style.width = `${width}px`;
+            selection.style.height = `${height}px`;
+        });
+        
+        selection.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            isDragging = true;
+            const rect = selection.getBoundingClientRect();
+            selectionOffsetX = e.clientX - rect.left;
+            selectionOffsetY = e.clientY - rect.top;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDrawing = false;
+            isDragging = false;
+        });
+        
+        saveBtn.addEventListener('click', async () => {
+            const rect = selection.getBoundingClientRect();
+            const previewRect = preview.getBoundingClientRect();
+            
+            // Calculate scale factor between display size and original image size
+            const scaleX = preview.naturalWidth / previewRect.width;
+            const scaleY = preview.naturalHeight / previewRect.height;
+            
+            // Convert coordinates from display pixels to original image pixels
+            const originalX = (rect.left - previewRect.left) * scaleX;
+            const originalY = (rect.top - previewRect.top) * scaleY;
+            const originalWidth = rect.width * scaleX;
+            const originalHeight = rect.height * scaleY;
+            
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+            formData.append('x', originalX);
+            formData.append('y', originalY);
+            formData.append('width', originalWidth);
+            formData.append('height', originalHeight);
+            formData.append('aspect_ratio', aspectRatioInput.value);
+            
+            try {
+                // Use the full URL to avoid CORS issues
+                const response = await fetch(window.location.origin + '/crop', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin' // Include credentials for same-origin requests
+                });
+                
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                
+                // Get the filename from the response header
+                const filename = response.headers.get('X-Filename');
+                currentImagePath = 'datasets/wind-force/test/custom/images/' + filename;
+                
+                // Show cropped image and activate step 2
+                croppedPreview.src = url;
+                croppedPreview.style.display = 'block';
+                stepTwoCard.style.display = 'block';
+                
+                // Get image dimensions for display
+                const img = new Image();
+                img.src = url;
+                img.onload = () => {
+                    // Update image info
+                    imageInfo.innerHTML = `
+                        Cropped image information:<br>
+                        Filename: ${filename}<br>
+                        Dimensions: ${img.width} x ${img.height} px
+                    `;
+                };
+                
+                // Reset counter for the new image
+                promptCounter = 0;
+                
+                // Clear the optimized prompt but keep the un-optimized prompt
+                optimizedPrompt.value = '';
+                
+                // Enable the optimize button
+                promptInput.disabled = false;
+                optimizeBtn.disabled = false;
+                
+                // Scroll to step 2
+                stepTwoCard.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error cropping image:', error);
+                alert('Error cropping image. Please try again.');
+            }
+        });
+        
+        // Handle prompt optimization
+        optimizeBtn.addEventListener('click', async () => {
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                optimizationStatus.textContent = 'Please enter a prompt.';
+                optimizationStatus.className = 'status error';
+                optimizationStatus.style.display = 'block';
+                return;
+            }
+            
+            optimizationStatus.textContent = 'Optimizing prompt...';
+            optimizationStatus.className = 'status';
+            optimizationStatus.style.display = 'block';
+            
+            try {
+                const response = await fetch('/optimize_prompt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        image_path: currentImagePath
+                    }),
+                });
+                
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                optimizedPrompt.value = data.optimized_prompt;
+                optimizationStatus.textContent = 'Prompt optimized successfully!';
+                optimizationStatus.className = 'status success';
+                
+                // Enable the CSV button when we have an optimized prompt
+                writeCSVBtn.disabled = false;
+            } catch (error) {
+                console.error('Error optimizing prompt:', error);
+                optimizationStatus.textContent = `Error: ${error.message || 'Failed to optimize prompt'}`;
+                optimizationStatus.className = 'status error';
+            }
+        });
+        
+        // Handle writing CSV
+        writeCSVBtn.addEventListener('click', async () => {
+            if (!currentImagePath || !optimizedPrompt.value) {
+                csvStatus.textContent = 'Missing required information. Please optimize prompt.';
+                csvStatus.className = 'status error';
+                csvStatus.style.display = 'block';
+                return;
+            }
+            
+            csvStatus.textContent = 'Writing CSV...';
+            csvStatus.className = 'status';
+            csvStatus.style.display = 'block';
+            
+            try {
+                const response = await fetch('/write_csv', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        image_path: currentImagePath,
+                        caption: optimizedPrompt.value,
+                        wind_angle: windAngleInput.value,
+                        wind_speed: windSpeedInput.value,
+                        prev_prompt_counter: promptCounter
+                    }),
+                });
+                
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                // Update the counter
+                promptCounter = data.prompt_counter;
+                
+                csvStatus.textContent = `CSV created successfully: ${data.csv_path}`;
+                csvStatus.className = 'status success';
+                csvStatus.style.display = 'block';
+            } catch (error) {
+                console.error('Error writing CSV:', error);
+                csvStatus.textContent = `Error: ${error.message || 'Failed to write CSV'}`;
+                csvStatus.className = 'status error';
+                csvStatus.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
