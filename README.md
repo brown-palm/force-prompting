@@ -380,7 +380,7 @@ python scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_p
 
 We used the [PhysDreamer](https://github.com/a1600012888/PhysDreamer) repo for our codebase.
 Our main modifications to their codebase allowed us to generate data at scale.
-We plan to release those scripts soon.
+We don't plan to release this code, but if you need it for your work please open an issue and we'll consider cleaning it up and releasing it.
 
 
 ### Step 3: Create the csv for the training data
