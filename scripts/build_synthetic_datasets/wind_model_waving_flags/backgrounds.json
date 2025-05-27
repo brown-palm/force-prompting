@@ -1,0 +1,302 @@
+{
+    "stuttgart_suburbs_4k": {
+        "wind_speed": 10025.794246900616,
+        "wind_angle": 182.1645480678672,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10025.8_angle_182.2/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling in the gentle breeze. The sky is overcast, casting a soft, diffused light over the scene. Behind the flag, lush green foliage sways slightly, adding to the serene atmosphere. A wooden fence stands in the background, its weathered texture complementing the natural setting. As the wind picks up, the flag dances more vigorously, creating a rhythmic motion that echoes the rustling leaves around it."
+    },
+    "ulmer_muenster_4k": {
+        "wind_speed": 10011.161384753881,
+        "wind_angle": 7.149678844790458,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10011.2_angle_7.1/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling with rhythmic waves. The flagpole stands tall in a spacious plaza, where the sun casts soft shadows on the ground. In the background, a historic building with intricate architecture looms, partially covered by scaffolding and a large banner. People stroll leisurely across the square, adding a sense of life and movement to the serene scene."
+    },
+    "acoustical_shell_4k": {
+        "wind_speed": 9801.02651266615,
+        "wind_angle": 336.71137568757143,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9801.0_angle_336.7/frame0240.png",
+        "optimized_prompt": "A flag flutters gently in the breeze, its fabric rippling gracefully against a backdrop of a tiled building. The flagpole stands tall and sturdy, topped with a golden finial that glints subtly in the light. As the wind picks up, the flag dances more vigorously, casting soft shadows on the wall behind it. The scene conveys a sense of calm and continuity, with the rhythmic motion of the flag adding a dynamic element to the otherwise still environment."
+    },
+    "symmetrical_garden_02_4k": {
+        "wind_speed": 9339.190445421935,
+        "wind_angle": 27.942996561659037,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9339.2_angle_27.9/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and undulating against a backdrop of lush greenery and a partly cloudy sky. The flagpole stands tall amidst a vibrant garden, where various shades of green blend harmoniously with the landscape. In the distance, a modern structure peeks through the foliage, its clean lines contrasting with the natural surroundings. The scene is serene, with the soft rustling of leaves and the rhythmic motion of the flag creating a peaceful ambiance."
+    },
+    "garden_nook_4k": {
+        "wind_speed": 10078.943939486544,
+        "wind_angle": 222.45449009295277,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10078.9_angle_222.5/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and undulating with each gust. The flagpole stands tall amidst a lush backdrop of dense greenery, where sunlight filters through the leaves, casting dappled shadows on the ground. The surrounding trees sway slightly, their branches rustling softly, adding a serene soundtrack to the scene. As the wind picks up, the flag dances more vigorously, its vibrant color contrasting against the natural hues of the landscape."
+    },
+    "golden_bay_4k": {
+        "wind_speed": 10155.63845272708,
+        "wind_angle": 151.4387654172893,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10155.6_angle_151.4/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the evening breeze, its fabric rippling gently against the backdrop of a modern urban apartment complex. The warm glow of streetlights casts a soft illumination on the scene, highlighting the textured brickwork of the buildings. Nearby, parked vehicles line the street, their surfaces reflecting the ambient light. The atmosphere is calm, with the quiet rustle of the flag adding a serene rhythm to the tranquil city night."
+    },
+    "beach_cloudy_bridge_4k": {
+        "wind_speed": 9157.686765973081,
+        "wind_angle": 175.79443027642486,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9157.7_angle_175.8/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically in the gentle breeze, its fabric rippling gracefully against the backdrop of a serene riverside scene. The flagpole stands firmly planted in the sandy ground near a large, weathered concrete structure. In the distance, lush greenery lines the riverbank, adding a touch of natural beauty to the tranquil setting. The flag's movement creates a rhythmic dance, echoing the peaceful ambiance of the surrounding landscape."
+    },
+    "industrial_sunset_02_4k": {
+        "wind_speed": 10131.606549739974,
+        "wind_angle": 137.10608403600378,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10131.6_angle_137.1/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling in the gentle breeze. The flag's movement is rhythmic and fluid, catching the light of the setting sun as it dances against the backdrop of a vast, lush field. The sky above is a serene canvas of soft blues and pinks, dotted with wispy clouds, creating a tranquil and picturesque scene. The surrounding landscape is a sea of green, with rows of crops stretching towards the horizon, adding to the peaceful ambiance of this rural setting."
+    },
+    "petit_port_4k": {
+        "wind_speed": 9445.155534164773,
+        "wind_angle": 200.45067942685066,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9445.2_angle_200.5/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the brisk wind, its fabric rippling with each gust. The scene is set against a tranquil marina, where boats are gently moored, their reflections shimmering on the water's surface. Bare trees stand in the background, hinting at the late autumn season, with a few leaves clinging to branches. The sky is overcast, casting a soft, diffused light over the landscape, creating a serene and contemplative atmosphere."
+    },
+    "round_platform_4k": {
+        "wind_speed": 9944.427348560555,
+        "wind_angle": 200.2861897310759,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9944.4_angle_200.3/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall flagpole, its fabric rippling in the gentle breeze. The scene is set in a spacious, open area with a paved ground, bordered by lush trees whose leaves rustle softly. In the background, a group of people in uniform walk leisurely, their figures partially obscured by the surrounding greenery. The atmosphere is calm and serene, with the soft rustling of leaves and the distant murmur of voices adding to the tranquil ambiance."
+    },
+    "hotel_rooftop_balcony_4k": {
+        "wind_speed": 10090.105133870204,
+        "wind_angle": 158.80535828951196,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10090.1_angle_158.8/frame0240.png",
+        "optimized_prompt": "A flag flutters gently in the breeze, its fabric rippling gracefully against the backdrop of a modern building with large glass windows. The flagpole stands tall, topped with a bright yellow finial, contrasting with the muted tones of the flag. As the wind picks up, the flag dances more vigorously, casting shifting shadows on the sleek surface of the building, while the sky reflects softly in the glass, hinting at a calm, overcast day."
+    },
+    "evening_meadow_4k": {
+        "wind_speed": 9447.338961585525,
+        "wind_angle": 203.03025622294433,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9447.3_angle_203.0/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically atop a silver pole, its fabric rippling gracefully in the gentle breeze. The lush greenery of the surrounding countryside provides a serene backdrop, with tall grasses swaying in harmony with the flag. Puffy clouds drift lazily across the expansive sky, casting soft shadows over the landscape. As the wind picks up, the flag dances more vigorously, its movements echoing the rhythm of nature's breath."
+    },
+    "belfast_sunset_4k": {
+        "wind_speed": 9868.745945169938,
+        "wind_angle": 190.66127739403538,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9868.7_angle_190.7/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a silver pole, its fabric rippling in the gentle breeze. The expansive landscape stretches out beneath a moody, overcast sky, with rolling hills and sparse vegetation dotting the terrain. As the wind picks up, the flag dances more vigorously, its edges curling and unfurling with each gust. The scene is serene, with the muted colors of the dry grassland contrasting against the flag's pastel hue, creating a tranquil yet dynamic visual."
+    },
+    "wide_street_01_4k": {
+        "wind_speed": 9571.940342302063,
+        "wind_angle": 359.73105973638144,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9571.9_angle_359.7/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and undulating against a backdrop of a bustling urban street. Cars pass by steadily, their metallic surfaces glinting under the bright sunlight. In the distance, people stroll along the sidewalk, some pausing to chat or admire the vibrant greenery of the trees lining the road. The flagpole stands tall and firm, its yellow finial gleaming, as the flag dances rhythmically, casting fleeting shadows on the pavement below."
+    },
+    "autumn_forest_04_4k": {
+        "wind_speed": 9379.670205105384,
+        "wind_angle": 218.347677470403,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9379.7_angle_218.3/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically against a backdrop of tall, leafless trees. The gentle breeze causes the fabric to ripple gracefully, casting dynamic shadows on the ground. Sunlight filters through the branches, creating a dappled effect on the forest floor, while the flagpole stands firm, topped with a small golden finial that glints in the light. The scene is serene, with the rustling leaves adding a soft, natural soundtrack to the flag's rhythmic dance."
+    },
+    "dam_bridge_4k": {
+        "wind_speed": 9395.31715785141,
+        "wind_angle": 159.14191066774873,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9395.3_angle_159.1/frame0240.png",
+        "optimized_prompt": "A flag flutters gently in the breeze against the backdrop of an industrial bridge. The fabric ripples gracefully, catching the light as it moves. The bridge, with its sturdy metal framework, stands silently over a calm body of water, reflecting the overcast sky. The scene is serene, with the soft sound of the flag rustling in the wind adding a rhythmic melody to the tranquil setting."
+    },
+    "goegap_road_4k": {
+        "wind_speed": 9257.703633588086,
+        "wind_angle": 218.07257580563694,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9257.7_angle_218.1/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and catching the light of the setting sun. The landscape is a vast expanse of open field, dotted with wildflowers that sway in harmony with the flag. In the background, rugged mountains rise majestically, their rocky surfaces bathed in the warm glow of the golden hour. The sky is a clear blue, adding a serene backdrop to this tranquil scene."
+    },
+    "limpopo_golf_course_4k": {
+        "wind_speed": 8840.526764560811,
+        "wind_angle": 34.15361562199702,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8840.5_angle_34.2/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a silver pole, its fabric rippling in the gentle breeze. The scene is set against a backdrop of lush green trees and a vast, open landscape under a sky dotted with fluffy white clouds. The flag's movements are rhythmic and fluid, echoing the serene ambiance of the countryside. As the wind picks up slightly, the flag dances more vigorously, casting playful shadows on the ground below."
+    },
+    "geislingen_an_der_steige_4k": {
+        "wind_speed": 9886.865628868502,
+        "wind_angle": 11.563059794563557,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9886.9_angle_11.6/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically atop a silver pole, its fabric rippling gracefully in the gentle breeze. The flag's movement creates a rhythmic dance against the backdrop of a vast, open landscape. The grassy field stretches out, dotted with patches of sunlight, while a line of bare trees stands quietly in the distance. The sky is a clear, serene blue, adding a sense of tranquility to the scene as the flag continues its lively motion, casting playful shadows on the ground below."
+    },
+    "rosendal_plains_2_4k": {
+        "wind_speed": 9485.022909780802,
+        "wind_angle": 354.59535866768243,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9485.0_angle_354.6/frame0240.png",
+        "optimized_prompt": "A flag gracefully waves in the gentle breeze, its fabric rippling and fluttering against a backdrop of a vast, open landscape. The sky is a brilliant blue, dotted with fluffy white clouds that drift lazily by. The grassy field stretches out, dotted with patches of green shrubs, creating a serene and peaceful scene. The flagpole stands tall and sturdy, its metallic sheen catching the sunlight as the flag dances rhythmically in the wind."
+    },
+    "cannon_4k": {
+        "wind_speed": 9444.505547060557,
+        "wind_angle": 358.00501474198916,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9444.5_angle_358.0/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the brisk wind atop a rugged hill, its pale fabric rippling against the backdrop of a cloudy sky. The landscape is dotted with rocky outcrops and sparse vegetation, creating a serene yet dramatic scene. As the wind picks up, the flag dances more vigorously, its movements echoing the untamed beauty of the surrounding wilderness."
+    },
+    "drakensberg_solitary_mountain_4k": {
+        "wind_speed": 9868.853843436646,
+        "wind_angle": 353.52979440610784,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9868.9_angle_353.5/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully against a backdrop of rugged mountains under a clear blue sky. The gentle breeze causes the flag to ripple and dance, casting soft shadows on its surface. The landscape is vast and open, with the distant peaks standing majestically, their outlines softened by the morning light. The scene is serene, with the flag's movement adding a dynamic element to the tranquil setting."
+    },
+    "lakeside_night_4k": {
+        "wind_speed": 9009.098588283832,
+        "wind_angle": 324.1519577183302,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9009.1_angle_324.2/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling in the gentle breeze. The background reveals a serene lake, its surface shimmering under the soft light, while a distant, earthy landscape stretches across the horizon. The flag's movements are rhythmic and fluid, echoing the tranquil ambiance of the natural surroundings."
+    },
+    "rogland_moonlit_night_4k": {
+        "wind_speed": 8526.432734047723,
+        "wind_angle": 199.4647170536785,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8526.4_angle_199.5/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling in the gentle breeze against a backdrop of rugged, rocky hills. The sky is a serene blue, dotted with faint stars, suggesting the transition from day to night. The landscape is arid, with scattered shrubs and boulders, creating a tranquil yet majestic scene as the flag continues to wave rhythmically in the wind."
+    },
+    "sandsloot_4k": {
+        "wind_speed": 8816.672940191353,
+        "wind_angle": 37.22933841642685,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8816.7_angle_37.2/frame0240.png",
+        "optimized_prompt": "A flag flutters gently in the night breeze, its fabric catching the light from a nearby source, casting soft shadows on the ground. The surrounding trees sway slightly, their leaves rustling in harmony with the flag's movements. The scene is serene, with the quiet rustle of the wind and the distant glow of lights illuminating the tranquil setting."
+    },
+    "urban_street_04_4k": {
+        "wind_speed": 9918.009580744947,
+        "wind_angle": 198.60530812124105,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9918.0_angle_198.6/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically in the breeze, its fabric rippling gracefully against the backdrop of a quiet urban street. The flagpole stands tall beside a stately building, its yellow finial gleaming in the sunlight. Trees sway gently in the background, their leaves rustling softly, while the shadows of the afternoon sun stretch across the pavement. The scene is peaceful, with the rhythmic motion of the flag adding a dynamic touch to the serene environment."
+    },
+    "qwantani_noon_4k": {
+        "wind_speed": 9122.295845976629,
+        "wind_angle": 211.39019238773784,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9122.3_angle_211.4/frame0240.png",
+        "optimized_prompt": "A flag gracefully waves in the gentle breeze atop a silver pole, its fabric rippling softly against a backdrop of rolling hills and a serene blue lake. The landscape stretches into the distance, with the golden hues of dry grass contrasting against the deep blue of the water. The sky is clear, adding a sense of calm and openness to the scene as the flag continues to flutter rhythmically, echoing the tranquility of the natural surroundings."
+    },
+    "golden_gate_hills_4k": {
+        "wind_speed": 9242.10005303838,
+        "wind_angle": 32.57335113684484,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9242.1_angle_32.6/frame0240.png",
+        "optimized_prompt": "A flag waves gently in the breeze atop a sturdy pole, its fabric rippling gracefully against a backdrop of a vast, open landscape. The sky is a brilliant blue, dotted with fluffy white clouds that drift lazily by. The grassy terrain stretches out, with patches of rocky ground adding texture to the scene. As the wind picks up, the flag flutters more vigorously, casting playful shadows on the ground below. The serene setting is filled with the soft rustling of grass and the distant call of birds, creating a peaceful, harmonious atmosphere."
+    },
+    "quattro_canti_4k": {
+        "wind_speed": 9834.028430211527,
+        "wind_angle": 356.3659288885415,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9834.0_angle_356.4/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and undulating with each gust. The flagpole stands firmly in a quiet, cobblestone street lined with historic buildings, their facades adorned with intricate balconies and shuttered windows. Overhead, decorative arches of lights hint at festive celebrations, casting delicate shadows on the warm-toned walls. The scene is serene, with the soft rustling of the flag adding a rhythmic whisper to the tranquil urban setting."
+    },
+    "resting_place_2_4k": {
+        "wind_speed": 9982.897861392345,
+        "wind_angle": 137.09077399234735,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9982.9_angle_137.1/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a silver pole, its fabric catching the gentle breeze. The scene is set against a serene backdrop of a tranquil lake bordered by lush greenery. Tall grasses sway in harmony with the flag, while the distant trees stand still, their reflections shimmering on the water's surface. The sky is a clear blue, adding to the peaceful ambiance of this picturesque landscape."
+    },
+    "kiara_1_dawn_4k": {
+        "wind_speed": 9887.246640750009,
+        "wind_angle": 201.36527313914905,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9887.2_angle_201.4/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a silver pole, its fabric rippling gently in the breeze. The backdrop reveals a serene landscape of rolling hills bathed in the warm hues of a setting sun, casting a tranquil glow over the expansive terrain. As the wind picks up, the flag dances more vigorously, its movements echoing the natural rhythm of the surrounding countryside. The sky transitions from a soft lavender to deeper shades, enhancing the peaceful ambiance of the scene."
+    },
+    "golf_course_sunrise_4k": {
+        "wind_speed": 10057.331179681256,
+        "wind_angle": 316.2647400459755,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10057.3_angle_316.3/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically atop a silver pole, its fabric rippling gracefully in the gentle breeze. The flag stands prominently against a serene backdrop of a golf course, where the lush green grass stretches out towards a line of bare trees. In the distance, rolling hills create a soft, undulating horizon under a pale sky. The wind continues to play with the flag, causing it to dance rhythmically, adding a dynamic touch to the tranquil landscape."
+    },
+    "rogland_sunset_4k": {
+        "wind_speed": 8795.99848809068,
+        "wind_angle": 23.69273603705784,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8796.0_angle_23.7/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically atop a sturdy pole, its fabric rippling gracefully in the gentle breeze. The backdrop reveals a rugged landscape of rocky terrain and sparse vegetation, with distant hills under a clear blue sky. As the wind picks up, the flag dances more vigorously, casting playful shadows on the sunlit rocks below. The scene exudes a sense of tranquility and timelessness, with the flag's movement adding a dynamic contrast to the stillness of the surrounding desert."
+    },
+    "solitude_night_4k": {
+        "wind_speed": 9161.730805282214,
+        "wind_angle": 14.781100468041998,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9161.7_angle_14.8/frame0240.png",
+        "optimized_prompt": "A flag waves gently in the evening breeze, its fabric rippling gracefully against the backdrop of a grand, illuminated building. The sky is a deepening blue, hinting at the onset of night, while the surrounding trees stand silhouetted in the dim light. The soft glow from the building casts long shadows across the grassy field, creating a serene and tranquil atmosphere. As the wind picks up slightly, the flag flutters more vigorously, adding a dynamic element to the peaceful scene."
+    },
+    "rogland_overcast_4k": {
+        "wind_speed": 9939.58127158619,
+        "wind_angle": 29.272316010816596,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9939.6_angle_29.3/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze against a rugged desert backdrop. The flagpole stands firm amidst a landscape of scattered rocks and sparse vegetation. As the wind picks up, the flag ripples and dances, casting soft shadows on its surface. The sky above is overcast, hinting at the possibility of changing weather, while the surrounding hills add a sense of vastness and solitude to the scene."
+    },
+    "chinese_garden_4k": {
+        "wind_speed": 7899.032278448552,
+        "wind_angle": 22.174415466999832,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_7899.0_angle_22.2/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling and undulating with each gust. The flagpole stands tall amidst a lush backdrop of vibrant green foliage, where sunlight filters through the leaves, casting dappled shadows on the ground. The rhythmic motion of the flag creates a serene and peaceful atmosphere, as if nature itself is breathing in harmony with the wind."
+    },
+    "lakeside_sunrise_4k": {
+        "wind_speed": 9849.249129371288,
+        "wind_angle": 209.24358131157436,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9849.2_angle_209.2/frame0240.png",
+        "optimized_prompt": "A flag gracefully waves in the gentle breeze, its fabric rippling softly against the backdrop of a serene lake. The water shimmers under the warm glow of the setting sun, casting a golden hue across the landscape. Tall, slender trees line the shore, their branches swaying slightly in harmony with the flag. The tranquil scene is filled with the soothing sounds of water lapping against the shore and the rustling of leaves, creating a peaceful and reflective atmosphere."
+    },
+    "sunflowers_4k": {
+        "wind_speed": 9552.873272380408,
+        "wind_angle": 332.99777976714273,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9552.9_angle_333.0/frame0191.png",
+        "optimized_prompt": "A flag flutters energetically in the gentle breeze, its fabric rippling gracefully against a backdrop of a sprawling sunflower field. The sunflowers, with their bright yellow petals, sway slightly in unison with the flag, creating a harmonious dance under the vast, partly cloudy sky. The clouds drift lazily, casting soft shadows over the landscape, while the flagpole stands tall and firm, its metallic sheen glinting subtly in the sunlight. The scene exudes a sense of tranquility and natural beauty, as the flag continues to wave rhythmically in the wind."
+    },
+    "fort_schanskop_morning_4k": {
+        "wind_speed": 9738.987517579473,
+        "wind_angle": 10.046024754860781,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9739.0_angle_10.0/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling and undulating in the gentle breeze. The sky is a soft, overcast gray, casting a muted light over the lush, rolling hills in the background. The landscape stretches out with a patchwork of green forests and distant hills, creating a serene and expansive view. As the wind picks up, the flag dances more vigorously, its edges curling and snapping with each gust, adding a dynamic element to the tranquil scene."
+    },
+    "qwantani_dusk_2_4k": {
+        "wind_speed": 9892.37963347468,
+        "wind_angle": 139.40323952668786,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9892.4_angle_139.4/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall flagpole, its fabric rippling and undulating in the gentle breeze. The sky is overcast, casting a soft, muted light over the expansive, rolling landscape of dry grass and distant hills. The flag's movement is rhythmic and soothing, creating a serene contrast against the vast, quiet backdrop. As the wind picks up slightly, the flag dances more vigorously, its edges curling and snapping with a lively energy, while the golden finial atop the pole gleams subtly in the diffused light."
+    },
+    "little_paris_under_tower_4k": {
+        "wind_speed": 8744.83996127871,
+        "wind_angle": 43.92180990534315,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8744.8_angle_43.9/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully in the gentle breeze, its fabric rippling with each gust. Behind it, a wooden structure is adorned with numerous colorful padlocks, each one glinting in the sunlight and symbolizing a promise or memory. The lush greenery in the background sways slightly, adding to the serene and picturesque scene. The atmosphere is peaceful, with the soft rustling of leaves and the occasional clinking of the locks creating a harmonious melody."
+    },
+    "rogland_clear_night_4k": {
+        "wind_speed": 8866.704726696646,
+        "wind_angle": 29.285351534016343,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8866.7_angle_29.3/frame0240.png",
+        "optimized_prompt": "A flag waves gently in the cool night breeze, its fabric rippling gracefully against a backdrop of a starry sky. The landscape is rugged, with rocky hills and sparse vegetation stretching into the distance. The stars twinkle brightly, casting a serene glow over the scene, while the flagpole stands tall and steadfast, crowned with a golden finial that catches the faint light. The atmosphere is calm and peaceful, with the flag's movement adding a rhythmic dance to the tranquil night."
+    },
+    "st_peters_square_night_4k": {
+        "wind_speed": 9463.103818796984,
+        "wind_angle": 339.8509852669217,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9463.1_angle_339.9/frame0240.png",
+        "optimized_prompt": "A flag waves gently in the evening breeze, its fabric rippling gracefully against the backdrop of a grand, illuminated building. The cobblestone plaza glistens under the soft glow of the lights, casting a serene ambiance. As the wind picks up, the flag flutters more vigorously, creating a rhythmic dance that echoes through the quiet night. The surrounding architecture stands majestically, adding a sense of timeless elegance to the scene."
+    },
+    "buikslotermeerplein_4k": {
+        "wind_speed": 10077.569925636844,
+        "wind_angle": 31.116101172241592,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_10077.6_angle_31.1/frame0240.png",
+        "optimized_prompt": "A flag flutters energetically in the breeze, its fabric rippling gracefully against a backdrop of an urban park. The trees, adorned with autumn leaves, sway gently, adding a touch of warmth to the scene. In the distance, people stroll leisurely along the pathways, while others relax on benches, enjoying the crisp air. The sky is a mix of blue and white, with clouds drifting lazily, complementing the lively movement of the flag."
+    },
+    "air_museum_playground_4k": {
+        "wind_speed": 9466.002476240179,
+        "wind_angle": 181.25901367618275,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9466.0_angle_181.3/frame0240.png",
+        "optimized_prompt": "A flag flutters gently in the breeze, its fabric rippling gracefully against a backdrop of a sunny playground. The playground is vibrant, with a colorful slide and climbing structure standing prominently. Nearby, a cheerful caterpillar-shaped play structure adds a whimsical touch. The sandbox, partially filled with toys, hints at recent play. Tall trees with lush green foliage sway slightly, casting dappled shadows on the grass, while the clear blue sky suggests a perfect day for outdoor fun."
+    },
+    "safari_sunset_4k": {
+        "wind_speed": 9979.842650972076,
+        "wind_angle": 145.77192453768401,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9979.8_angle_145.8/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling with the gentle breeze. The surrounding landscape is a serene expanse of dry grass and sparse trees, silhouetted against the soft hues of a twilight sky. As the wind picks up, the flag dances more vigorously, casting dynamic shadows on the ground. The scene is tranquil, with the rustling of the grass and the whisper of the wind creating a peaceful symphony in the quiet evening air."
+    },
+    "cobblestone_street_night_4k": {
+        "wind_speed": 9945.921472918817,
+        "wind_angle": 323.80627678138086,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9945.9_angle_323.8/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully against the backdrop of a textured, beige wall. The gentle breeze causes the fabric to ripple and dance, creating soft, undulating waves. The flagpole stands tall and sturdy, topped with a golden finial that glints subtly in the ambient light. Shadows play across the wall, adding depth and contrast to the scene, as the flag continues its rhythmic motion, embodying a sense of freedom and fluidity."
+    },
+    "immenstadter_horn_4k": {
+        "wind_speed": 9918.217115526948,
+        "wind_angle": 165.752124332515,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_9918.2_angle_165.8/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, its fabric rippling in the gentle breeze. The scene is set against a backdrop of lush, green grass and a dense forest of towering pine trees. The sky above is a soft, overcast gray, hinting at a calm, serene day. As the wind picks up slightly, the flag dances more vigorously, casting dynamic shadows on the ground below. The tranquil setting is punctuated by the rhythmic sound of the flag's fabric snapping in the wind, creating a peaceful yet lively atmosphere."
+    },
+    "klippad_sunrise_1_4k": {
+        "wind_speed": 8334.250618982753,
+        "wind_angle": 191.99487656647057,
+        "last_frame_path": "output/2025-03-21-blender-render/pngs/flag_speed_8334.3_angle_192.0/frame0240.png",
+        "optimized_prompt": "A flag flutters gracefully atop a tall pole, set against a rugged, rocky landscape. The gentle breeze causes the fabric to ripple and dance, casting soft shadows on its surface. In the background, the expansive terrain stretches out, dotted with sparse vegetation and framed by distant hills under a sky speckled with fluffy clouds. The scene conveys a sense of tranquility and openness, as the flag continues to wave rhythmically in the wind."
+    },
+    "kloofendal_48d_partly_cloudy_puresky_4k": {
+        "wind_speed": -1.0,
+        "wind_angle": -1.0,
+        "last_frame_path": "",
+        "optimized_prompt": "A flag gracefully waves in the gentle breeze, its fabric rippling and fluttering against a backdrop of a clear blue sky dotted with fluffy white clouds. The flagpole stands tall and sturdy, topped with a golden finial that gleams softly in the sunlight. As the wind picks up, the flag dances more vigorously, creating a rhythmic motion that mirrors the serene yet dynamic atmosphere of the open sky."
+    }
+}
