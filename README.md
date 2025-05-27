@@ -366,14 +366,13 @@ Look inside the script before running it, you'll need the first two lines (blend
 sh scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_render.sh
 ```
 
+You might want to consider launching many of those in parallel because they can take a while.
 And this script concatenates the pngs to mp4s.
 
 ```bash
 RENDER_DIR=~/scratch/rolling_balls/pngs
 python scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_png_to_mp4.py $RENDER_DIR
 ```
-
-But I have a separate script for parallelizing these.
 
 
 ### Step 2: Generate plant swaying videos using PhysDreamer
@@ -455,6 +454,7 @@ Look inside the script before running it, you'll need the first two lines (blend
 sh scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_render.sh
 ```
 
+You might want to consider launching many of those in parallel because they can take a while.
 And this script concatenates the pngs to mp4s.
 
 ```bash
@@ -462,7 +462,7 @@ RENDER_DIR=~/scratch/waving_flags/pngs
 python scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_png_to_mp4.py $RENDER_DIR
 ```
 
-But I have a separate script for parallelizing these.
+
 
 ### Step 2: Create the csv for the training data
 
