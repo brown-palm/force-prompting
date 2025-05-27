@@ -378,7 +378,7 @@ python scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_p
 ### Step 2: Generate plant swaying videos using PhysDreamer
 
 
-We used the [PhysDreamer](https://github.com/a1600012888/PhysDreamer) repo for our codebase.
+We used the [PhysDreamer](https://github.com/a1600012888/PhysDreamer) repo to do this.
 Our main modifications to their codebase allowed us to generate data at scale.
 We don't plan to release this code, but if you need it for your work please open an issue and we'll consider cleaning it up and releasing it.
 
@@ -418,7 +418,10 @@ python scripts/build_synthetic_datasets/poke_model_rolling_balls/generate_csv_fo
     --take_subset_size 11000
 ```
 
-Combine the two csvs into one csv.
+The first script uses a `backgrounds.json` file which contains a unique text prompt for each HDRI background (ragardless of how many balls are in the scene, and what designs they are. We used different prompts for soccer balls and bowling balls however.)
+We generated this using the gpt-4o API for prompt upscaling using the last frame of each video, and prompt seeds as simple as "the ball moves".
+
+Next, we combine the two csvs into one csv.
 
 ```bash
 EXP_DIR=2025-04-07-point-force-unified-model
@@ -475,6 +478,10 @@ python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_fro
     --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
     --subset_size 10000
 ```
+
+This script uses a `backgrounds.json` file which contains a unique text prompt for each HDRI background (ragardless of how many flags are in the scene, and what colors they are).
+We generated this using the gpt-4o API for prompt upscaling using the last frame of each video, and prompt seeds as simple as "the flag waves in the wind".
+
 
 </details>
 
