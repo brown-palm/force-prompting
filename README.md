@@ -2,7 +2,7 @@
 
 # Force Prompting: Video Generation Models Can<br>Learn and Generalize Physics-based Control Signals
 
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-<COLOR>.svg)](https://arxiv.org/abs/XXXX.XXXXX)
+[![arXiv](https://img.shields.io/badge/arXiv-2505.19386-<COLOR>.svg)](https://arxiv.org/abs/2505.19386)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Project page](https://img.shields.io/badge/-Project%20page-blue.svg)](https://force-prompting.github.io/)
 
@@ -500,7 +500,14 @@ We thank the authors of the works we build upon:
 If you find this code useful in your research, please cite:
 
 ```
-@InProceedings{TODO:addcitation
+@misc{gillman2025forcepromptingvideogeneration,
+      title={Force Prompting: Video Generation Models Can Learn and Generalize Physics-based Control Signals}, 
+      author={Nate Gillman and Charles Herrmann and Michael Freeman and Daksh Aggarwal and Evan Luo and Deqing Sun and Chen Sun},
+      year={2025},
+      eprint={2505.19386},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2505.19386}, 
 }
 ```
 
