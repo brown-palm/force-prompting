@@ -313,7 +313,7 @@ bash scripts/train_4_gpu.sh \
 
 
 
-## Generate training datasets (in progress!)
+## Generate training datasets
 
 <details>
   <summary><b> Download Blender assets </b></summary>
@@ -360,11 +360,13 @@ These command line blender rendering scripts were tested on Blender 4.4.
 ### Step 1: Generate ball rolling videos using Blender
 
 This script renders video frames to pngs.
+Look inside the script before running it, you'll need the first two lines (blender software, and output path).
 
 ```bash
 sh scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_render.sh
 ```
 
+You might want to consider launching many of those in parallel because they can take a while.
 And this script concatenates the pngs to mp4s.
 
 ```bash
@@ -372,15 +374,13 @@ RENDER_DIR=~/scratch/rolling_balls/pngs
 python scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_png_to_mp4.py $RENDER_DIR
 ```
 
-But I have a separate script for parallelizing these.
-
 
 ### Step 2: Generate plant swaying videos using PhysDreamer
 
 
-We used the [PhysDreamer](https://github.com/a1600012888/PhysDreamer) repo for our codebase.
+We used the [PhysDreamer](https://github.com/a1600012888/PhysDreamer) repo to do this.
 Our main modifications to their codebase allowed us to generate data at scale.
-We plan to release those scripts soon.
+We don't plan to release this code, but if you need it for your work please open an issue and we'll consider cleaning it up and releasing it.
 
 
 ### Step 3: Create the csv for the training data
@@ -418,7 +418,10 @@ python scripts/build_synthetic_datasets/poke_model_rolling_balls/generate_csv_fo
     --take_subset_size 11000
 ```
 
-Combine the two csvs into one csv.
+The first script uses a `backgrounds.json` file which contains a unique text prompt for each HDRI background (ragardless of how many balls are in the scene, and what designs they are. We used different prompts for soccer balls and bowling balls however.)
+We generated this using the gpt-4o API for prompt upscaling using the last frame of each video, and prompt seeds as simple as "the ball moves".
+
+Next, we combine the two csvs into one csv.
 
 ```bash
 EXP_DIR=2025-04-07-point-force-unified-model
@@ -447,11 +450,38 @@ cp ${DIR_PLANTS}/*.mp4 ${DIR_COMBINED}
 
 ### Step 1: Generate flag waving videos using Blender
 
-We plan to release this code soon.
+This script renders video frames to pngs.
+Look inside the script before running it, you'll need the first two lines (blender software, and output path).
+
+```bash
+sh scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_render.sh
+```
+
+You might want to consider launching many of those in parallel because they can take a while.
+And this script concatenates the pngs to mp4s.
+
+```bash
+RENDER_DIR=~/scratch/waving_flags/pngs
+python scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_png_to_mp4.py $RENDER_DIR
+```
+
+
 
 ### Step 2: Create the csv for the training data
 
-We plan to release this code soon.
+```bash
+RENDER_DIR=~/scratch/waving_flags
+python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_from_dir.py \
+    --file_dir ${RENDER_DIR}/videos \
+    --file_type video \
+    --output_path ${RENDER_DIR}/waving-flags.csv \
+    --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
+    --subset_size 10000
+```
+
+This script uses a `backgrounds.json` file which contains a unique text prompt for each HDRI background (ragardless of how many flags are in the scene, and what colors they are).
+We generated this using the gpt-4o API for prompt upscaling using the last frame of each video, and prompt seeds as simple as "the flag waves in the wind".
+
 
 </details>
 
