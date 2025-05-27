@@ -313,7 +313,7 @@ bash scripts/train_4_gpu.sh \
 
 
 
-## Generate training datasets (in progress!)
+## Generate training datasets
 
 <details>
   <summary><b> Download Blender assets </b></summary>
@@ -360,6 +360,7 @@ These command line blender rendering scripts were tested on Blender 4.4.
 ### Step 1: Generate ball rolling videos using Blender
 
 This script renders video frames to pngs.
+Look inside the script before running it, you'll need the first two lines (blender software, and output path).
 
 ```bash
 sh scripts/build_synthetic_datasets/poke_model_rolling_balls/rolling_balls_render.sh
@@ -447,11 +448,33 @@ cp ${DIR_PLANTS}/*.mp4 ${DIR_COMBINED}
 
 ### Step 1: Generate flag waving videos using Blender
 
-We plan to release this code soon.
+This script renders video frames to pngs.
+Look inside the script before running it, you'll need the first two lines (blender software, and output path).
+
+```bash
+sh scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_render.sh
+```
+
+And this script concatenates the pngs to mp4s.
+
+```bash
+RENDER_DIR=~/scratch/waving_flags/pngs
+python scripts/build_synthetic_datasets/wind_model_waving_flags/waving_flags_png_to_mp4.py $RENDER_DIR
+```
+
+But I have a separate script for parallelizing these.
 
 ### Step 2: Create the csv for the training data
 
-We plan to release this code soon.
+```bash
+RENDER_DIR=~/scratch/waving_flags
+python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_from_dir.py \
+    --file_dir ${RENDER_DIR}/videos \
+    --file_type video \
+    --output_path ${RENDER_DIR}/waving-flags.csv \
+    --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
+    --subset_size 10000
+```
 
 </details>
 
