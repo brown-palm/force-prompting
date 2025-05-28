@@ -11,6 +11,8 @@
 The official PyTorch implementation of the paper [**"Force Prompting: Video Generation Models Can<br>Learn and Generalize Physics-based Control Signals"**](https://arxiv.org/abs/2505.19386).
 Please visit our [**webpage**](https://force-prompting.github.io/) for more details.
 
+![teaser](scripts/misc_helper_files/teaser.gif)
+
 
 ## First time setup instructions
 
