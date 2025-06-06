@@ -155,7 +155,8 @@ CHECKPOINT="checkpoints/step-5000-checkpoint-point-force.pt"
 
 # you can change this to the list of csvs you want to run inference on.
 IMAGE_CSVS=(
-  "datasets/point-force/test/mass_understanding_quantitative/wood/_materialballrollingballonwoodbowling1_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark/ornament/_ornament1_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark/ornament/_ornament1_obj1_prompt2.csv"
 )
 
 for image_csv in "${IMAGE_CSVS[@]}"; do
