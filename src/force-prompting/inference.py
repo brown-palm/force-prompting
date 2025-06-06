@@ -349,7 +349,7 @@ def do_inference(
     pipe = CogVideoXImageToVideoControlnetPipeline.from_pretrained(
         args.pretrained_model_name_or_path,
         transformer=unwrap_model(accelerator, transformer),
-        text_encoder=unwrap_model(accelerator, text_encoder),
+        text_encoder=(unwrap_model(accelerator, text_encoder) if text_encoder is not None else None),
         vae=unwrap_model(accelerator, vae),
         controlnet=unwrap_model(accelerator, controlnet),
         scheduler=scheduler,
