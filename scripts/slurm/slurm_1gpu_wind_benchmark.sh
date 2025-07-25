@@ -9,11 +9,12 @@
 #SBATCH -N 1 # gives one node, makes sure cpu cores are on same node
 #SBATCH -c 1 # num CPU cores
 #SBATCH --mem=24G
-#SBATCH -t 2:00:00
-#SBATCH -e output/slurm_logs/%j.err
-#SBATCH -o output/slurm_logs/%j.out
+#SBATCH -t 1:00:00
+#SBATCH -e output/slurm_logs/%A_%a.err
+#SBATCH -o output/slurm_logs/%A_%a.out
 #SBATCH --mail-user=nate_gillman@brown.edu
 #SBATCH --mail-type=ALL
+#SBATCH --array=0-43
 
 # SET UP COMPUTING ENV
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
@@ -38,23 +39,65 @@ cd ${HOME_DIR}
 ###########################################################################
 ###########################################################################
 ###########################################################################
-IDXS=("datasets/wind-force/test/benchmark/bubbles/_bubbles1_prompt1.csv") 
-IDXS=("datasets/wind-force/test/benchmark/campfire/_campfire2_benchmark.csv" "datasets/wind-force/test/benchmark/campfire/_campfire4.csv") 
-IDXS=("datasets/wind-force/test/benchmark/chimney/_chimney1.csv" "datasets/wind-force/test/benchmark/chimney/_chimney2_benchmark.csv") 
-IDXS=("datasets/wind-force/test/benchmark/clothwithperson/_clothwithperson1.csv") 
-IDXS=("datasets/wind-force/test/benchmark/confetti/_confetti1_prompt1.csv" "datasets/wind-force/test/benchmark/confetti/_confetti1_prompt2.csv" "datasets/wind-force/test/benchmark/confetti/_confetti2_prompt1.csv" "datasets/wind-force/test/benchmark/confetti/_confetti2_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/dress/_dress1_benchmark.csv" "datasets/wind-force/test/benchmark/dress/_dress3_benchmark.csv") 
-IDXS=("datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves1_prompt1.csv" "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves1_prompt2.csv" "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves2_prompt1.csv" "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves2_prompt2.csv" "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves4_prompt1.csv" "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves4_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/fog/_fog1_prompt1.csv" "datasets/wind-force/test/benchmark/fog/_fog2_prompt1.csv" "datasets/wind-force/test/benchmark/fog/_fog2_prompt2.csv" "datasets/wind-force/test/benchmark/fog/_fog3_prompt1.csv" "datasets/wind-force/test/benchmark/fog/_fog3_prompt2.csv" "datasets/wind-force/test/benchmark/fog/_fog4_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/hair/_hair1_vary_angles_benchmark.csv") 
-IDXS=("datasets/wind-force/test/benchmark/inflatabletube/_inflatabletube3_prompt1.csv" "datasets/wind-force/test/benchmark/inflatabletube/_inflatabletube3_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/litter/_litter1_prompt1.csv" "datasets/wind-force/test/benchmark/litter/_litter1_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/paperlantern/_paperlantern1_prompt1.csv" "datasets/wind-force/test/benchmark/paperlantern/_paperlantern1_prompt2.csv" "datasets/wind-force/test/benchmark/paperlantern/_paperlantern3_prompt1.csv" "datasets/wind-force/test/benchmark/paperlantern/_paperlantern3_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/smokeincense/_smokeincense1_prompt1.csv") 
-IDXS=("datasets/wind-force/test/benchmark/snow/_snow1_prompt1.csv" "datasets/wind-force/test/benchmark/snow/_snow1_prompt2.csv" "datasets/wind-force/test/benchmark/snow/_snow2_prompt1.csv" "datasets/wind-force/test/benchmark/snow/_snow2_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/steamybeverage/_steamybeverage2_prompt1.csv" "datasets/wind-force/test/benchmark/steamybeverage/_steamybeverage2_prompt2.csv") 
-IDXS=("datasets/wind-force/test/benchmark/whitecloth/_whitecloth1_benchmark.csv" "datasets/wind-force/test/benchmark/whitecloth/_whitecloth2_benchmark.csv" "datasets/wind-force/test/benchmark/whitecloth/_whitecloth3.csv" "datasets/wind-force/test/benchmark/whitecloth/_whitecloth4.csv")
-# all of them concatenated
-IMAGE_CSVS=()
+declare -a IMAGE_CSVS=(
+    "datasets/wind-force/test/benchmark/bubbles/_bubbles1_prompt1.csv"
+    "datasets/wind-force/test/benchmark/campfire/_campfire2_benchmark.csv"
+    "datasets/wind-force/test/benchmark/campfire/_campfire4.csv"
+    "datasets/wind-force/test/benchmark/chimney/_chimney1.csv" 
+    "datasets/wind-force/test/benchmark/chimney/_chimney2_benchmark.csv"
+    "datasets/wind-force/test/benchmark/clothwithperson/_clothwithperson1.csv"
+    "datasets/wind-force/test/benchmark/confetti/_confetti1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/confetti/_confetti1_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/confetti/_confetti2_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/confetti/_confetti2_prompt2.csv"
+    "datasets/wind-force/test/benchmark/dress/_dress1_benchmark.csv" 
+    "datasets/wind-force/test/benchmark/dress/_dress3_benchmark.csv"
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves1_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves2_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves2_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves4_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fallingleaves/_fallingleaves4_prompt2.csv"
+    "datasets/wind-force/test/benchmark/fog/_fog1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fog/_fog2_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fog/_fog2_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/fog/_fog3_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/fog/_fog3_prompt2.csv"
+    "datasets/wind-force/test/benchmark/fog/_fog4_prompt2.csv"
+    "datasets/wind-force/test/benchmark/hair/_hair1_vary_angles_benchmark.csv"
+    "datasets/wind-force/test/benchmark/inflatabletube/_inflatabletube3_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/inflatabletube/_inflatabletube3_prompt2.csv"
+    "datasets/wind-force/test/benchmark/litter/_litter1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/litter/_litter1_prompt2.csv"
+    "datasets/wind-force/test/benchmark/paperlantern/_paperlantern1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/paperlantern/_paperlantern1_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/paperlantern/_paperlantern3_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/paperlantern/_paperlantern3_prompt2.csv"
+    "datasets/wind-force/test/benchmark/smokeincense/_smokeincense1_prompt1.csv"
+    "datasets/wind-force/test/benchmark/snow/_snow1_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/snow/_snow1_prompt2.csv" 
+    "datasets/wind-force/test/benchmark/snow/_snow2_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/snow/_snow2_prompt2.csv"
+    "datasets/wind-force/test/benchmark/steamybeverage/_steamybeverage2_prompt1.csv" 
+    "datasets/wind-force/test/benchmark/steamybeverage/_steamybeverage2_prompt2.csv"
+    "datasets/wind-force/test/benchmark/whitecloth/_whitecloth1_benchmark.csv" 
+    "datasets/wind-force/test/benchmark/whitecloth/_whitecloth2_benchmark.csv" 
+    "datasets/wind-force/test/benchmark/whitecloth/_whitecloth3.csv" 
+    "datasets/wind-force/test/benchmark/whitecloth/_whitecloth4.csv"
+)
 
+# set the checkpoint path here
+CHECKPOINT="output/wind_force/2025-07-24_15-30-21-wind-0.5x-size/step-5000-checkpoint.pt"
 
+# Get the current job's CSV file using the SLURM_ARRAY_TASK_ID environment variable
+CURRENT_CSV=${IMAGE_CSVS[$SLURM_ARRAY_TASK_ID]}
+echo "Processing file: $CURRENT_CSV"
+
+for image_csv in "${IMAGE_CSVS[@]}"; do
+  bash scripts/inference_1_gpu.sh \
+      --force_type "wind_force" \
+      --model_type "controlnet_with_force_control_signal" \
+      --num_validation_videos 1 \
+      --csv_path_val ${CURRENT_CSV} \
+      --pretrained_controlnet_path "${CHECKPOINT}"
+done
