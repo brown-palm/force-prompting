@@ -167,7 +167,6 @@ def get_pixel():
     actual_y_top = int(y * scale_y)
     
     # Then convert to bottom-left origin
-    # This is what was going wrong - we need to handle the conversion correctly
     y_bottom_left = actual_height - actual_y_top
     
     # Make sure coordinates are in bounds
@@ -186,69 +185,76 @@ def write_csv():
     data = request.json
     image_path = data.get('image_path')
     caption = data.get('caption')
-    coord_x = data.get('coord_x')
-    coord_y = data.get('coord_y')
-    angle = data.get('angle', 0.0)
-    force = data.get('force', 0.5)
-    prev_coord_x = data.get('prev_coord_x')
-    prev_coord_y = data.get('prev_coord_y')
-    prev_obj_counter = data.get('prev_obj_counter', 0)
-    prev_prompt_counter = data.get('prev_prompt_counter', 0)
     
-    # Get image dimensions
-    img = Image.open(image_path)
-    width, height = img.size
-    
-    # Determine the object and prompt counters
-    obj_counter = prev_obj_counter
-    prompt_counter = prev_prompt_counter
-    
-    # If coordinates have changed, increment object counter and reset prompt counter
-    if prev_coord_x is not None and prev_coord_y is not None:
-        if int(coord_x) != int(prev_coord_x) or int(coord_y) != int(prev_coord_y):
-            obj_counter += 1
-            prompt_counter = 1
-        else:
-            # Coordinates are the same, increment prompt counter
-            prompt_counter += 1
-    else:
-        # First time saving, start with obj1_prompt1
-        obj_counter = 1
-        prompt_counter = 1
-    
-    # Generate CSV name based on image name
+    # Get image dimensions from the file itself to be robust
+    try:
+        with Image.open(image_path) as img:
+            width, height = img.size
+    except FileNotFoundError:
+        return jsonify({'error': f'Image not found at path: {image_path}'}), 404
+
+    # Object 1 data
+    angle = data.get('angle')
+    force = data.get('force')
+    coordx = data.get('coordx')
+    coordy = data.get('coordy')
+
+    # Object 2 data
+    angle_obj2 = data.get('angle_obj2')
+    force_obj2 = data.get('force_obj2')
+    coordx_obj2 = data.get('coordx_obj2')
+    coordy_obj2 = data.get('coordy_obj2')
+
     image_basename = os.path.basename(image_path)
-    image_name = os.path.splitext(image_basename)[0]
-    csv_filename = f"{image_name}_obj{obj_counter}_prompt{prompt_counter}.csv"
-    csv_path = os.path.join(output_dir, csv_filename)
+    # Add a second underscore to the image name for the two-object case
+    csv_image_name = '_' + image_basename
     
+    new_image_path = os.path.join(os.path.dirname(image_path), csv_image_name)
+    try:
+        if os.path.exists(image_path) and not os.path.exists(new_image_path):
+             os.rename(image_path, new_image_path)
+    except OSError as e:
+        print(f"Warning: Could not rename file {image_path} to {new_image_path}: {e}")
+    
+    # Generate CSV name based on new image name
+    image_name_no_ext = os.path.splitext(csv_image_name)[0]
+    csv_filename = f"{image_name_no_ext}.csv"
+    csv_path = os.path.join(output_dir, csv_filename)
+
     # Create the result dictionary
     result = {
-        'image': image_basename,
-        'caption': caption,
+        'image': csv_image_name,
+        'angle': angle,
+        'force': force,
+        'coordx': coordx,
+        'coordy': coordy,
+        'angle_obj2': angle_obj2,
+        'force_obj2': force_obj2,
+        'coordx_obj2': coordx_obj2,
+        'coordy_obj2': coordy_obj2,
         'width': width,
         'height': height,
-        'angle': float(angle),
-        'force': float(force),
-        'coordx': int(coord_x),
-        'coordy': int(coord_y),
+        'caption': caption,
     }
-    
+
+    # Define the fieldnames in the desired order
+    fieldnames = [
+        'image', 'angle', 'force', 'coordx', 'coordy',
+        'angle_obj2', 'force_obj2', 'coordx_obj2', 'coordy_obj2',
+        'width', 'height', 'caption'
+    ]
+
     # Write the CSV
     with open(csv_path, 'w', newline='') as csvfile:
-        fieldnames = ['image', 'angle', 'force', 'coordx', 'coordy', 
-                     'width', 'height', 'caption']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, extrasaction='ignore')
         writer.writeheader()
         writer.writerow(result)
-    
+
     return jsonify({
         'success': True,
-        'csv_path': csv_path,
-        'obj_counter': obj_counter,
-        'prompt_counter': prompt_counter
+        'csv_path': csv_path
     })
+
 
 if __name__ == '__main__':
     app.run(debug=True)

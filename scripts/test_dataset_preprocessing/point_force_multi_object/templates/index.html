@@ -88,6 +88,7 @@
         }
         textarea {
             width: 100%;
+            box-sizing: border-box;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
@@ -150,7 +151,6 @@
     <div class="container">
         <h1>Unified Image Processing Tool</h1>
         
-        <!-- Step 1: Image Upload and Cropping -->
         <div class="card">
             <div class="card-title">Step 1: Upload and Crop Image</div>
             <div class="controls">
@@ -167,16 +167,18 @@
             </div>
         </div>
         
-        <!-- Step 2: Cropped Image, Prompt, and Pixel Selection -->
         <div class="card" id="stepTwoCard" style="display: none;">
-            <div class="card-title">Step 2: Optimize Prompt and Select Coordinate</div>
+            <div class="card-title">Step 2: Optimize Prompt and Select Coordinates</div>
             <div class="flex-container">
                 <div class="flex-item">
                     <h3>Cropped Image</h3>
-                    <p>Click on the image to get pixel coordinates (origin at bottom-left)</p>
+                    <p>Select a target object below, then click on the image to get its coordinates (origin at bottom-left).</p>
                     <img id="croppedPreview">
-                    <div class="coordinate-display" id="coordinateDisplay">
-                        Click on the image to see coordinates
+                    <div class="coordinate-display" id="coordinateDisplay1">
+                        <b>Object 1:</b> Not selected.
+                    </div>
+                    <div class="coordinate-display" id="coordinateDisplay2" style="margin-top: 5px;">
+                        <b>Object 2:</b> Not selected.
                     </div>
                 </div>
                 <div class="flex-item">
@@ -185,18 +187,41 @@
                     <button id="optimizeBtn" class="btn">Optimize Prompt</button>
                     <div id="optimizationStatus" class="status"></div>
                     
-                    <h3>Results</h3>
+                    <h3>Results & Parameters</h3>
                     <textarea id="optimizedPrompt" placeholder="Optimized prompt will appear here..."></textarea>
+                    
+                    <div class="input-group" style="margin: 15px 0;">
+                        <label>Target for Click:</label>
+                        <input type="radio" id="selectObj1" name="objectSelection" value="1" checked>
+                        <label for="selectObj1">Object 1</label>
+                        <input type="radio" id="selectObj2" name="objectSelection" value="2">
+                        <label for="selectObj2">Object 2</label>
+                    </div>
+
+                    <h4>Object 1</h4>
                     <div class="parameter-inputs">
                         <div class="input-group">
-                            <label for="angleInput">Angle:</label>
-                            <input type="number" id="angleInput" value="0.0" step="0.1">
+                            <label for="angleInput1">Angle:</label>
+                            <input type="number" id="angleInput1" value="0.0" step="0.1">
                         </div>
                         <div class="input-group">
-                            <label for="forceInput">Force:</label>
-                            <input type="number" id="forceInput" value="0.5" step="0.1">
+                            <label for="forceInput1">Force:</label>
+                            <input type="number" id="forceInput1" value="0.5" step="0.1">
                         </div>
                     </div>
+                    
+                    <h4>Object 2</h4>
+                    <div class="parameter-inputs">
+                        <div class="input-group">
+                            <label for="angleInput2">Angle:</label>
+                            <input type="number" id="angleInput2" value="0.0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="forceInput2">Force:</label>
+                            <input type="number" id="forceInput2" value="0.5" step="0.1">
+                        </div>
+                    </div>
+
                     <button id="writeCSVBtn" class="btn" disabled>Write CSV</button>
                     <div id="csvStatus" class="status"></div>
                 </div>
@@ -217,11 +242,18 @@
         const optimizeBtn = document.getElementById('optimizeBtn');
         const optimizedPrompt = document.getElementById('optimizedPrompt');
         const writeCSVBtn = document.getElementById('writeCSVBtn');
-        const coordinateDisplay = document.getElementById('coordinateDisplay');
         const optimizationStatus = document.getElementById('optimizationStatus');
         const csvStatus = document.getElementById('csvStatus');
-        const angleInput = document.getElementById('angleInput');
-        const forceInput = document.getElementById('forceInput');
+        // Object 1 elements
+        const coordinateDisplay1 = document.getElementById('coordinateDisplay1');
+        const angleInput1 = document.getElementById('angleInput1');
+        const forceInput1 = document.getElementById('forceInput1');
+        // Object 2 elements
+        const coordinateDisplay2 = document.getElementById('coordinateDisplay2');
+        const angleInput2 = document.getElementById('angleInput2');
+        const forceInput2 = document.getElementById('forceInput2');
+
+        optimizedPrompt.addEventListener('input', checkCSVButtonState);
         
         // Variables for selection and cropping
         let isDrawing = false;
@@ -229,12 +261,11 @@
         let startX, startY;
         let selectionOffsetX, selectionOffsetY;
         let currentImagePath = '';
-        let selectedCoordX = null;
-        let selectedCoordY = null;
-        let prevCoordX = null;
-        let prevCoordY = null;
-        let objCounter = 0;
-        let promptCounter = 0;
+        let imageWidth = null, imageHeight = null;
+
+        // State for the two objects
+        let selectedCoordX1 = null, selectedCoordY1 = null;
+        let selectedCoordX2 = null, selectedCoordY2 = null;
         
         // Get actual scaled dimensions of the image
         function getScaledImageDimensions() {
@@ -255,22 +286,17 @@
             let width, height;
             const BORDER_WIDTH = 10;  // Border width in pixels
             
-            // If image is wider than tall (accounting for aspect ratio)
             if (dims.width / dims.height > aspectRatio) {
-                // Height is the limiting factor
                 height = dims.height - (2 * BORDER_WIDTH);
                 width = height * aspectRatio;
             } else {
-                // Width is the limiting factor
                 width = dims.width - (2 * BORDER_WIDTH);
                 height = width / aspectRatio;
             }
             
-            // Center the selection with a margin to prevent overflow
             const left = Math.max(BORDER_WIDTH, (dims.width - width) / 2);
             const top = Math.max(BORDER_WIDTH, (dims.height - height) / 2);
             
-            // Apply the calculated dimensions
             selection.style.left = `${left}px`;
             selection.style.top = `${top}px`;
             selection.style.width = `${width}px`;
@@ -286,15 +312,12 @@
                     saveBtn.disabled = false;
                     preview.style.width = '100%';
                     preview.style.height = 'auto';
-                    
-                    // Create maximum sized selection after image is loaded
-                    setTimeout(createMaxSizedSelection, 100); // Small delay to ensure image dimensions are calculated
+                    setTimeout(createMaxSizedSelection, 100);
                 };
             }
         });
         
         aspectRatioInput.addEventListener('change', () => {
-            // Update selection with new aspect ratio
             if (preview.complete && preview.naturalWidth) {
                 createMaxSizedSelection();
             }
@@ -304,11 +327,9 @@
             e.preventDefault();
             isDrawing = true;
             isDragging = false;
-            
             const rect = preview.getBoundingClientRect();
             startX = e.clientX - rect.left;
             startY = e.clientY - rect.top;
-            
             selection.style.left = `${startX}px`;
             selection.style.top = `${startY}px`;
             selection.style.width = '0px';
@@ -318,75 +339,42 @@
         
         document.addEventListener('mousemove', (e) => {
             if (!isDrawing && !isDragging) return;
-            
             const rect = preview.getBoundingClientRect();
             const dims = getScaledImageDimensions();
-            
             if (isDragging) {
                 const selectionRect = selection.getBoundingClientRect();
                 const width = selectionRect.width;
                 const height = selectionRect.height;
-                
                 let newX = e.clientX - rect.left - selectionOffsetX;
                 let newY = e.clientY - rect.top - selectionOffsetY;
-                
-                const BORDER_WIDTH = 2;  // Border width in pixels
-                // Keep selection within image bounds
+                const BORDER_WIDTH = 2;
                 newX = Math.max(BORDER_WIDTH, Math.min(newX, dims.width - width - BORDER_WIDTH));
                 newY = Math.max(BORDER_WIDTH, Math.min(newY, dims.height - height - BORDER_WIDTH));
-                
                 selection.style.left = `${newX}px`;
                 selection.style.top = `${newY}px`;
                 return;
             }
-            
-            // Calculate current position
             let currentX = e.clientX - rect.left;
             let currentY = e.clientY - rect.top;
-            
-            // Calculate width and height maintaining aspect ratio
             let width = Math.abs(currentX - startX);
             let height = width / aspectRatioInput.value;
-            
-            // Calculate final coordinates based on direction
             let finalX = startX;
             let finalY = startY;
-            
             if (currentX < startX) {
                 finalX = currentX;
                 width = startX - finalX;
                 height = width / aspectRatioInput.value;
             }
-            
             if (currentY < startY) {
                 finalY = currentY;
                 height = startY - finalY;
                 width = height * aspectRatioInput.value;
             }
-            
-            // Enforce boundaries
-            const BORDER_WIDTH = 2;  // Border width in pixels
-            
-            if (finalX < BORDER_WIDTH) {
-                finalX = BORDER_WIDTH;
-                width = currentX > startX ? startX - BORDER_WIDTH : currentX - finalX;
-                height = width / aspectRatioInput.value;
-            }
-            if (finalY < BORDER_WIDTH) {
-                finalY = BORDER_WIDTH;
-                height = currentY > startY ? startY - BORDER_WIDTH : currentY - finalY;
-                width = height * aspectRatioInput.value;
-            }
-            if (finalX + width > rect.width - BORDER_WIDTH) {
-                width = rect.width - BORDER_WIDTH - finalX;
-                height = width / aspectRatioInput.value;
-            }
-            if (finalY + height > rect.height - BORDER_WIDTH) {
-                height = rect.height - BORDER_WIDTH - finalY;
-                width = height * aspectRatioInput.value;
-            }
-            
-            // Apply the calculated dimensions
+            const BORDER_WIDTH = 2;
+            if (finalX < BORDER_WIDTH) { finalX = BORDER_WIDTH; }
+            if (finalY < BORDER_WIDTH) { finalY = BORDER_WIDTH; }
+            if (finalX + width > rect.width - BORDER_WIDTH) { width = rect.width - BORDER_WIDTH - finalX; height = width / aspectRatioInput.value; }
+            if (finalY + height > rect.height - BORDER_WIDTH) { height = rect.height - BORDER_WIDTH - finalY; width = height * aspectRatioInput.value; }
             selection.style.left = `${finalX}px`;
             selection.style.top = `${finalY}px`;
             selection.style.width = `${width}px`;
@@ -406,16 +394,16 @@
             isDrawing = false;
             isDragging = false;
         });
+
+        function checkCSVButtonState() {
+            writeCSVBtn.disabled = !(selectedCoordX1 !== null && selectedCoordX2 !== null && optimizedPrompt.value.trim() !== '');
+        }
         
         saveBtn.addEventListener('click', async () => {
             const rect = selection.getBoundingClientRect();
             const previewRect = preview.getBoundingClientRect();
-            
-            // Calculate scale factor between display size and original image size
             const scaleX = preview.naturalWidth / previewRect.width;
             const scaleY = preview.naturalHeight / previewRect.height;
-            
-            // Convert coordinates from display pixels to original image pixels
             const originalX = (rect.left - previewRect.left) * scaleX;
             const originalY = (rect.top - previewRect.top) * scaleY;
             const originalWidth = rect.width * scaleX;
@@ -430,41 +418,27 @@
             formData.append('aspect_ratio', aspectRatioInput.value);
             
             try {
-                // Use the full URL to avoid CORS issues
-                const response = await fetch(window.location.origin + '/crop', {
-                    method: 'POST',
-                    body: formData,
-                    credentials: 'same-origin' // Include credentials for same-origin requests
-                });
-                
+                const response = await fetch(window.location.origin + '/crop', { method: 'POST', body: formData, credentials: 'same-origin' });
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
-                
-                // Get the filename from the response header
                 const filename = response.headers.get('X-Filename');
                 currentImagePath = 'datasets/point-force/test/custom/images/' + filename;
                 
-                // Show cropped image and activate step 2
                 croppedPreview.src = url;
                 croppedPreview.style.display = 'block';
                 stepTwoCard.style.display = 'block';
                 
-                // Reset counters and coordinates for the new image
-                objCounter = 0;
-                promptCounter = 0;
-                selectedCoordX = null;
-                selectedCoordY = null;
-                prevCoordX = null;
-                prevCoordY = null;
-                
-                // Clear the optimized prompt but keep the un-optimized prompt
+                // Reset state for the new image
+                selectedCoordX1 = selectedCoordY1 = null;
+                selectedCoordX2 = selectedCoordY2 = null;
+                imageWidth = imageHeight = null;
+                coordinateDisplay1.innerHTML = '<b>Object 1:</b> Not selected.';
+                coordinateDisplay2.innerHTML = '<b>Object 2:</b> Not selected.';
                 optimizedPrompt.value = '';
-                
-                // Enable the optimize button
                 promptInput.disabled = false;
                 optimizeBtn.disabled = false;
+                checkCSVButtonState();
                 
-                // Scroll to step 2
                 stepTwoCard.scrollIntoView({ behavior: 'smooth' });
             } catch (error) {
                 console.error('Error cropping image:', error);
@@ -472,7 +446,6 @@
             }
         });
         
-        // Handle coordinate selection on cropped image
         croppedPreview.addEventListener('click', async (e) => {
             const rect = croppedPreview.getBoundingClientRect();
             const x = Math.round(e.clientX - rect.left);
@@ -481,9 +454,7 @@
             try {
                 const response = await fetch('/get_pixel', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         image_path: currentImagePath,
                         x: x,
@@ -494,28 +465,27 @@
                 });
                 
                 const data = await response.json();
-                selectedCoordX = data.x;
-                selectedCoordY = data.y;
-                
-                // Update coordinate display
-                coordinateDisplay.innerHTML = `
-                    Selected coordinate (origin at bottom-left):<br>
-                    x: ${selectedCoordX}, y: ${selectedCoordY}<br>
-                    Image dimensions: ${data.width} x ${data.height}
-                `;
-                console.log("Adjusted coordinates:", selectedCoordX, selectedCoordY);
-                
-                // If we have both coordinates and a prompt, enable the CSV button
-                if (selectedCoordX !== null && selectedCoordY !== null && optimizedPrompt.value.trim() !== '') {
-                    writeCSVBtn.disabled = false;
+                imageWidth = data.width;
+                imageHeight = data.height;
+
+                const whichObject = document.querySelector('input[name="objectSelection"]:checked').value;
+                if (whichObject === '1') {
+                    selectedCoordX1 = data.x;
+                    selectedCoordY1 = data.y;
+                    coordinateDisplay1.innerHTML = `<b>Object 1:</b><br>x: ${data.x}, y: ${data.y}<br>Image: ${data.width}x${data.height}`;
+                } else {
+                    selectedCoordX2 = data.x;
+                    selectedCoordY2 = data.y;
+                    coordinateDisplay2.innerHTML = `<b>Object 2:</b><br>x: ${data.x}, y: ${data.y}<br>Image: ${data.width}x${data.height}`;
                 }
+                checkCSVButtonState();
+
             } catch (error) {
                 console.error('Error getting pixel coordinates:', error);
                 alert('Error getting pixel coordinates. Please try again.');
             }
         });
         
-        // Handle prompt optimization
         optimizeBtn.addEventListener('click', async () => {
             const prompt = promptInput.value.trim();
             if (!prompt) {
@@ -524,7 +494,6 @@
                 optimizationStatus.style.display = 'block';
                 return;
             }
-            
             optimizationStatus.textContent = 'Optimizing prompt...';
             optimizationStatus.className = 'status';
             optimizationStatus.style.display = 'block';
@@ -532,28 +501,17 @@
             try {
                 const response = await fetch('/optimize_prompt', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        prompt: prompt,
-                        image_path: currentImagePath
-                    }),
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt, image_path: currentImagePath }),
                 });
                 
                 const data = await response.json();
-                if (data.error) {
-                    throw new Error(data.error);
-                }
+                if (data.error) { throw new Error(data.error); }
                 
                 optimizedPrompt.value = data.optimized_prompt;
                 optimizationStatus.textContent = 'Prompt optimized successfully!';
                 optimizationStatus.className = 'status success';
-                
-                // If coordinates are selected, enable the CSV button
-                if (selectedCoordX !== null && selectedCoordY !== null) {
-                    writeCSVBtn.disabled = false;
-                }
+                checkCSVButtonState();
             } catch (error) {
                 console.error('Error optimizing prompt:', error);
                 optimizationStatus.textContent = `Error: ${error.message || 'Failed to optimize prompt'}`;
@@ -561,10 +519,9 @@
             }
         });
         
-        // Handle writing CSV
         writeCSVBtn.addEventListener('click', async () => {
-            if (!currentImagePath || !optimizedPrompt.value || selectedCoordX === null || selectedCoordY === null) {
-                csvStatus.textContent = 'Missing required information. Please select coordinates and optimize prompt.';
+            if (!currentImagePath || !optimizedPrompt.value || selectedCoordX1 === null || selectedCoordX2 === null) {
+                csvStatus.textContent = 'Missing info. Please select coordinates for both objects and optimize a prompt.';
                 csvStatus.className = 'status error';
                 csvStatus.style.display = 'block';
                 return;
@@ -575,47 +532,27 @@
             csvStatus.style.display = 'block';
             
             try {
-                console.log("Before CSV request - state:", {
-                    objCounter, promptCounter, 
-                    prevCoordX, prevCoordY, 
-                    selectedCoordX, selectedCoordY
-                });
-                
                 const response = await fetch('/write_csv', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         image_path: currentImagePath,
                         caption: optimizedPrompt.value,
-                        coord_x: selectedCoordX,
-                        coord_y: selectedCoordY,
-                        angle: angleInput.value,
-                        force: forceInput.value,
-                        prev_coord_x: prevCoordX,
-                        prev_coord_y: prevCoordY,
-                        prev_obj_counter: objCounter,
-                        prev_prompt_counter: promptCounter
+                        // Object 1
+                        angle: angleInput1.value,
+                        force: forceInput1.value,
+                        coordx: selectedCoordX1,
+                        coordy: selectedCoordY1,
+                        // Object 2
+                        angle_obj2: angleInput2.value,
+                        force_obj2: forceInput2.value,
+                        coordx_obj2: selectedCoordX2,
+                        coordy_obj2: selectedCoordY2
                     }),
                 });
                 
                 const data = await response.json();
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-                
-                // Update the counters
-                objCounter = data.obj_counter;
-                promptCounter = data.prompt_counter;
-                prevCoordX = selectedCoordX;
-                prevCoordY = selectedCoordY;
-                
-                console.log("After CSV request - updated state:", {
-                    objCounter, promptCounter, 
-                    prevCoordX, prevCoordY, 
-                    csvPath: data.csv_path
-                });
+                if (data.error) { throw new Error(data.error); }
                 
                 csvStatus.textContent = `CSV created successfully: ${data.csv_path}`;
                 csvStatus.className = 'status success';
