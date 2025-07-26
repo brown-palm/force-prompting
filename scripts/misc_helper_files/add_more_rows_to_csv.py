@@ -4,7 +4,7 @@ import glob
 
 def process_csvs_in_directories(directories):
     # force_values = [0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]
-    force_values = [0.1, 0.3, 0.7, 0.9]
+    force_values = [0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]
     
     for directory in directories:
         # Find all CSV files in the directory
@@ -27,7 +27,8 @@ def process_csvs_in_directories(directories):
                     
                     # Find the index of the "force" column
                     try:
-                        force_index = header.index("force")
+                        force_index1 = header.index("force")
+                        force_index2 = header.index("force_obj2")
                     except ValueError:
                         print(f"Warning: No 'force' column found in {csv_file}. Skipping.")
                         continue
@@ -52,7 +53,8 @@ def process_csvs_in_directories(directories):
                         # Write 7 duplicated rows with different force values
                         for force_value in force_values:
                             modified_row = first_row.copy()
-                            modified_row[force_index] = force_value
+                            modified_row[force_index1] = force_value
+                            modified_row[force_index2] = force_value
                             writer.writerow(modified_row)
                 
                 print(f"Successfully processed {csv_file} -> {new_filename}")
@@ -62,25 +64,9 @@ def process_csvs_in_directories(directories):
 
 if __name__ == "__main__":
     # Hardcoded list of directories to process
-
-    # quantitative study, balls rolling
-    # directories = [
-    #     "data/2025-04-07-point-force-unified-model/material_understanding_balls_rolling_quant/dirt",
-    #     "data/2025-04-07-point-force-unified-model/material_understanding_balls_rolling_quant/grass",
-    #     "data/2025-04-07-point-force-unified-model/material_understanding_balls_rolling_quant/stone",
-    #     "data/2025-04-07-point-force-unified-model/material_understanding_balls_rolling_quant/wood",
-    # ]
-
-    # qualitative study, more than just balls rolling
-    directories = [
-        "data/2025-04-07-point-force-unified-model/material_understanding_qual/" + dirname
-        for
-        dirname in [
-            "babybottlesideways", "chess", "glasscup", "lunchtray", "skateboard", "stackofbooks", 
-            "wheelbarrow", "babybottleupright", "cube", "jarofcoinsupright" , "ornament",
-            "smallcube", "stackofplates", "boxofclothes", "dvdcase", "laundrybasket", "shoppingcart"           
-            "solocup", "wagon"
-        ]
-    ]
     
+    directories = [
+        "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant"
+    ]
+
     process_csvs_in_directories(directories)
