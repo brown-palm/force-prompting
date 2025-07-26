@@ -87,7 +87,8 @@ declare -a IMAGE_CSVS=(
 )
 
 # set the checkpoint path here
-CHECKPOINT="output/wind_force/2025-07-24_15-30-21-wind-0.5x-size/step-5000-checkpoint.pt"
+# CHECKPOINT="output/wind_force/2025-07-24_15-30-21-wind-0.5x-size/step-5000-checkpoint.pt"
+CHECKPOINT="output/wind_force/2025-07-25_07-36-57-wind-2.0x-size/step-5000-checkpoint.pt"
 
 # Get the current job's CSV file using the SLURM_ARRAY_TASK_ID environment variable
 CURRENT_CSV=${IMAGE_CSVS[$SLURM_ARRAY_TASK_ID]}
