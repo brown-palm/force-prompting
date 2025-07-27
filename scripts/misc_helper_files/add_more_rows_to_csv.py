@@ -66,7 +66,9 @@ if __name__ == "__main__":
     # Hardcoded list of directories to process
     
     directories = [
-        "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant"
+        # "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant"
+        # "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint"
+        "datasets/point-force/test/benchmark_multipoke_mass_understanding"
     ]
 
     process_csvs_in_directories(directories)
