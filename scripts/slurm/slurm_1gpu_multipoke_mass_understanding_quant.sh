@@ -14,7 +14,7 @@
 #SBATCH -o output/slurm_logs/%A_%a.out
 #SBATCH --mail-user=nate_gillman@brown.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=0-10
+#SBATCH --array=0-2
 
 # SET UP COMPUTING ENV
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
@@ -30,27 +30,24 @@ conda activate $CONDA_ENV_DIR
 HOME_DIR=/oscar/data/superlab/users/nates_stuff/cogvideox-controlnet-clean
 cd ${HOME_DIR}
 
-# python scripts/print_csv_paths.py datasets/point-force/test/benchmark/apple
+# declare -a IMAGE_CSVS=(
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling01.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling02.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling03.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling04.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling05.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling06.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling07.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling08.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling09.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling10.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling11.csv"
+# )
 
-###########################################################################
-###########################################################################
-###########################################################################
-################# OUR FINAL BENCHMARK FOR WIND FORCE ######################
-###########################################################################
-###########################################################################
-###########################################################################
 declare -a IMAGE_CSVS=(
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling01.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling02.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling03.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling04.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling05.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling06.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling07.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling08.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling09.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling10.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant/___massexpsoccervsbowling11.csv"
+    "datasets/point-force/test/benchmark_multipoke_mass_understanding/laundrybasket/__materialexplaundrybasket2.csv"
+    "datasets/point-force/test/benchmark_multipoke_mass_understanding/skateboard/__materialexpskateboard3.csv"
+    "datasets/point-force/test/benchmark_multipoke_mass_understanding/stackofbooks/__materialexpstackofbooks2.csv"
 )
 
 # set the checkpoint path here
@@ -60,11 +57,9 @@ CHECKPOINT="checkpoints/step-5000-checkpoint-point-force-copy.pt"
 CURRENT_CSV=${IMAGE_CSVS[$SLURM_ARRAY_TASK_ID]}
 echo "Processing file: $CURRENT_CSV"
 
-for image_csv in "${IMAGE_CSVS[@]}"; do
-  bash scripts/inference_1_gpu.sh \
-      --force_type "point_force" \
-      --model_type "controlnet_with_force_control_signal" \
-      --num_validation_videos 1 \
-      --csv_path_val ${CURRENT_CSV} \
-      --pretrained_controlnet_path "${CHECKPOINT}"
-done
+bash scripts/inference_1_gpu.sh \
+    --force_type "point_force" \
+    --model_type "controlnet_with_force_control_signal" \
+    --num_validation_videos 1 \
+    --csv_path_val ${CURRENT_CSV} \
+    --pretrained_controlnet_path "${CHECKPOINT}"
