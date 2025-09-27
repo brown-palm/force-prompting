@@ -14,7 +14,7 @@
 #SBATCH -o output/slurm_logs/%A_%a.out
 #SBATCH --mail-user=nate_gillman@brown.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=0-2
+#SBATCH --array=0-7
 
 # SET UP COMPUTING ENV
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
@@ -30,6 +30,7 @@ conda activate $CONDA_ENV_DIR
 HOME_DIR=/oscar/data/superlab/users/nates_stuff/cogvideox-controlnet-clean
 cd ${HOME_DIR}
 
+# old mass understanding exps 
 # declare -a IMAGE_CSVS=(
 #     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling01.csv"
 #     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling02.csv"
@@ -44,11 +45,26 @@ cd ${HOME_DIR}
 #     "datasets/point-force/test/benchmark_multipoke_mass_understanding_quant_nohint/___massexpsoccervsbowling11.csv"
 # )
 
-declare -a IMAGE_CSVS=(
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding/laundrybasket/__materialexplaundrybasket2.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding/skateboard/__materialexpskateboard3.csv"
-    "datasets/point-force/test/benchmark_multipoke_mass_understanding/stackofbooks/__materialexpstackofbooks2.csv"
-)
+# new mass understanding exps a la Chen suggestion
+#
+# declare -a IMAGE_CSVS=(
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding/laundrybasket/__materialexplaundrybasket2.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding/skateboard/__materialexpskateboard3.csv"
+#     "datasets/point-force/test/benchmark_multipoke_mass_understanding/stackofbooks/__materialexpstackofbooks2.csv"
+# )
+
+# physgen
+#
+# declare -a IMAGE_CSVS=(
+#     "datasets/point-force/test/physgen_demos/_physgen1_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen2_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen3_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen4_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen5_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen6_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen7_obj1_prompt1.csv"
+#     "datasets/point-force/test/physgen_demos/_physgen8_obj1_prompt1.csv"
+# )
 
 # set the checkpoint path here
 CHECKPOINT="checkpoints/step-5000-checkpoint-point-force-copy.pt"

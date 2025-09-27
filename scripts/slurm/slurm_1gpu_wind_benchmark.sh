@@ -14,7 +14,7 @@
 #SBATCH -o output/slurm_logs/%A_%a.out
 #SBATCH --mail-user=nate_gillman@brown.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=0-43
+#SBATCH --array=0-89
 
 # SET UP COMPUTING ENV
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
@@ -35,7 +35,7 @@ cd ${HOME_DIR}
 ###########################################################################
 ###########################################################################
 ###########################################################################
-################# OUR FINAL BENCHMARK FOR WIND FORCE ######################
+################# OUR FINAL BENCHMARK FOR WIND FORCE; 44 of them ######################
 ###########################################################################
 ###########################################################################
 ###########################################################################
@@ -86,19 +86,118 @@ declare -a IMAGE_CSVS=(
     "datasets/wind-force/test/benchmark/whitecloth/_whitecloth4.csv"
 )
 
+###########################################################################
+###########################################################################
+###########################################################################
+################# OUR FINAL BENCHMARK FOR POINT FORCE; 90 of them #####################
+###########################################################################
+###########################################################################
+###########################################################################
+declare -a IMAGE_CSVSS=(
+    "datasets/point-force/test/benchmark/apple/_apple1_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/apple/_apple4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/balloon/_balloon3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/balloon/_balloon3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/balloon/_balloon4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/balloon/_balloon4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush1_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/blueberrybush/_blueberrybush4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion1_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/dandelion/_dandelion4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/ivy/_ivy1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/ornament/_ornament1_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/ornament/_ornament1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/ornament/_ornament2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/ornament/_ornament2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/ornament/_ornament4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt3.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt4.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt5.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose2_obj1_prompt6.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt3.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt4.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt5.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose3_obj1_prompt6.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt3.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt4.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt5.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose4_obj1_prompt6.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj1_prompt3.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj1_prompt4.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj2_prompt2.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj2_prompt3.csv" 
+    "datasets/point-force/test/benchmark/rose/_rose5_obj2_prompt4.csv" 
+    "datasets/point-force/test/benchmark/sunflower/_sunflower2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/sunflower/_sunflower2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/sunflower/_sunflower3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/sunflower/_sunflower3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/swing/_swing3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/swing/_swing3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar1_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar2_obj1_prompt1_vary_speeds.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar2_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar3_obj1_prompt1_vary_speeds.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar3_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar4_obj1_prompt1_vary_speeds.csv" 
+    "datasets/point-force/test/benchmark/toycar/_toycar4_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack1_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack1_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack2_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack2_obj3_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack3_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack3_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack3_obj3_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack5_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack5_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack6_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack6_obj1_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack6_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack6_obj2_prompt2.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack7_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack7_obj2_prompt1.csv" 
+    "datasets/point-force/test/benchmark/toytrainontracks/_toytrainontrack7_obj3_prompt1.csv" 
+    "datasets/point-force/test/benchmark/windmill/_windmill2_obj1_prompt1.csv" 
+    "datasets/point-force/test/benchmark/windmill/_windmill2_obj1_prompt2.csv"
+)
+
 # set the checkpoint path here
 # CHECKPOINT="output/wind_force/2025-07-24_15-30-21-wind-0.5x-size/step-5000-checkpoint.pt"
-CHECKPOINT="output/wind_force/2025-07-25_07-36-57-wind-2.0x-size/step-5000-checkpoint.pt"
+# CHECKPOINT="output/wind_force/2025-07-25_07-36-57-wind-2.0x-size/step-5000-checkpoint.pt"
+CHECKPOINT="output/unified_point_and_wind_force/2025-07-26_22-48-58-unified/step-5000-checkpoint.pt"
 
 # Get the current job's CSV file using the SLURM_ARRAY_TASK_ID environment variable
-CURRENT_CSV=${IMAGE_CSVS[$SLURM_ARRAY_TASK_ID]}
+CURRENT_CSV=${IMAGE_CSVSS[$SLURM_ARRAY_TASK_ID]}
 echo "Processing file: $CURRENT_CSV"
 
-for image_csv in "${IMAGE_CSVS[@]}"; do
-  bash scripts/inference_1_gpu.sh \
-      --force_type "wind_force" \
-      --model_type "controlnet_with_force_control_signal" \
-      --num_validation_videos 1 \
-      --csv_path_val ${CURRENT_CSV} \
-      --pretrained_controlnet_path "${CHECKPOINT}"
-done
+bash scripts/inference_1_gpu.sh \
+    --force_type "point_force" \
+    --model_type "controlnet_with_force_control_signal" \
+    --num_validation_videos 1 \
+    --csv_path_val ${CURRENT_CSV} \
+    --pretrained_controlnet_path "${CHECKPOINT}"
