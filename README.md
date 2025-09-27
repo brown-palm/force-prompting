@@ -167,6 +167,38 @@ for image_csv in "${IMAGE_CSVS[@]}"; do
       --csv_path_val "${image_csv}" \
       --pretrained_controlnet_path "${CHECKPOINT}"
 done
+
+# multi-gaussian blob inference
+CHECKPOINT="checkpoints/step-5000-checkpoint-point-force-copy.pt"
+IMAGE_CSVS=(
+  "datasets/point-force/test/benchmark_multipoke/ornament/_ornament1_obj1obj2_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/balloon/_balloon3_obj1obj2_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/apple/__twoapples3_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/toycar/__twotoycars2_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/dandelion/__twodandelions3_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/rose/__tworoses2_obj1_prompt1.csv"
+  "datasets/point-force/test/benchmark_multipoke/rose/__tworoses4_obj1_prompt1.csv"
+)
+IMAGE_CSVS=(
+  "datasets/point-force/test/benchmark_multipoke_mass_understanding/laundrybasket/___materialexplaundrybasket1.csv"
+  "datasets/point-force/test/benchmark_multipoke_mass_understanding/ornament/___materialexpornament1.csv"
+  "datasets/point-force/test/benchmark_multipoke_mass_understanding/skateboard/___materialexpskateboard1.csv"
+  "datasets/point-force/test/benchmark_multipoke_mass_understanding/skateboard/___materialexpskateboard2.csv"
+  "datasets/point-force/test/benchmark_multipoke_mass_understanding/stackofbooks/___materialexpstackofbooks1.csv"
+)
+for image_csv in "${IMAGE_CSVS[@]}"; do
+  bash scripts/inference_1_gpu.sh \
+      --force_type "point_force" \
+      --model_type "controlnet_with_force_control_signal" \
+      --num_validation_videos 1 \
+      --csv_path_val "${image_csv}" \
+      --pretrained_controlnet_path "${CHECKPOINT}"
+done
+
+mkdir -p checkpoints/step-5000-checkpoint-point-force-copy/videos_with_blobs
+cp checkpoints/step-5000-checkpoint-point-force-copy/*with_control_signal.mp4 checkpoints/step-5000-checkpoint-point-force-copy/videos_with_blobs
+
+
 ```
 
 If you want to run inference on some preprocessed data, you can find the `IMAGE_CSVS` inside the directory [datasets/point-force/test/benchmark/](datasets/point-force/test/benchmark/).
@@ -265,6 +297,12 @@ bash scripts/train_4_gpu.sh \
     --force_type "point_force" \
     --video_root_dir "datasets/point-force/train/point_force_23000" \
     --csv_path "datasets/point-force/train/point_force_23000.csv"
+
+# just balls!
+bash scripts/train_4_gpu.sh \
+    --force_type "point_force" \
+    --video_root_dir "datasets/point-force/train/point_force_24000_balls" \
+    --csv_path "datasets/point-force/train/point_force_24000_balls.csv"
 ```
 
 ### Resume training from checkpoint
@@ -295,6 +333,13 @@ bash scripts/train_4_gpu.sh \
     --force_type "wind_force" \
     --video_root_dir "datasets/wind-force/train/wind_force_15359" \
     --csv_path "datasets/wind-force/train/wind_force_15359.csv"
+
+bash scripts/train_4_gpu.sh \
+    --force_type "wind_force" \
+    --video_root_dir "datasets/tmp/videos_multi_flag" \
+    --csv_path "datasets/tmp/waving-flags-30738.csv"
+
+
 ```
 
 ### Resume training from checkpoint
@@ -480,6 +525,20 @@ python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_fro
     --output_path ${RENDER_DIR}/waving-flags.csv \
     --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
     --subset_size 10000
+
+python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_from_dir.py \
+    --file_dir datasets/tmp/videos_multi_flag \
+    --file_type video \
+    --output_path datasets/tmp/waving-flags-30738.csv \
+    --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
+    --subset_size 30738
+
+python scripts/build_synthetic_datasets/wind_model_waving_flags/generate_csv_from_dir.py \
+    --file_dir datasets/wind-force/train/wind_force_15359 \
+    --file_type video \
+    --output_path datasets/wind-force/train/wind_force_7679.csv \
+    --backgrounds_json_path scripts/build_synthetic_datasets/wind_model_waving_flags/backgrounds.json \
+    --subset_size 7679
 ```
 
 This script uses a `backgrounds.json` file which contains a unique text prompt for each HDRI background (ragardless of how many flags are in the scene, and what colors they are).
