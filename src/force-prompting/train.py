@@ -124,6 +124,12 @@ def precompute_text_embeddings(
     # Get unique prompts from both datasets
     if split == "train":
         all_prompts = set(train_df['caption'].unique())#.union(set(val_df['caption'].unique()))
+        LOAD_SECOND_TRAIN_SET = False
+        if LOAD_SECOND_TRAIN_SET:
+            other_train_df = pd.read_csv("datasets/point-force/train/wind_force_15359.csv")
+            more_prompts = set(other_train_df['caption'].unique())
+            all_prompts = all_prompts.union(more_prompts)
+
     elif split == "val":
         all_prompts = set()
         for i in range(len(train_df)):
@@ -482,24 +488,156 @@ def main(args):
         )
     else:
 
-        train_dataset = DatasetConstructor(
-            video_root_dir=args.video_root_dir,
-            csv_path=args.csv_path,
-            image_size=(args.height, args.width), 
-            stride=(args.stride_min, args.stride_max),
-            sample_n_frames=args.max_num_frames,
-            controlnet_type=args.controlnet_type,
+        DO_COMBINED_DATALOADER = False
+        if not DO_COMBINED_DATALOADER: # the default
+            train_dataset = DatasetConstructor(
+                video_root_dir=args.video_root_dir,
+                csv_path=args.csv_path,
+                image_size=(args.height, args.width), 
+                stride=(args.stride_min, args.stride_max),
+                sample_n_frames=args.max_num_frames,
+                controlnet_type=args.controlnet_type,
+            )
+            train_dataloader = DataLoader(
+                train_dataset,
+                batch_size=args.train_batch_size,
+                shuffle=True,
+                collate_fn=collate_fn,
+                num_workers=args.dataloader_num_workers,
+            )
+        else:
 
-        )
+            import random
+            import itertools
 
+            # class CombinedDataLoader:
+            #     def __init__(self, dataloader1, dataloader2):
+            #         self.dataloader1 = dataloader1
+            #         self.dataloader2 = dataloader2
+            #         # The total length is the sum of batches from both loaders
+            #         self.length = len(dataloader1) + len(dataloader2)
 
-        train_dataloader = DataLoader(
-            train_dataset,
-            batch_size=args.train_batch_size,
-            shuffle=True,
-            collate_fn=collate_fn,
-            num_workers=args.dataloader_num_workers,
-        )
+            #     def __iter__(self):
+            #         self.iter1 = itertools.cycle(self.dataloader1)
+            #         self.iter2 = itertools.cycle(self.dataloader2)
+            #         # Randomly decide which dataloader to start with for this epoch
+            #         self.is_dl1_turn = random.random() < 0.5
+            #         return self
+
+            #     def __next__(self):
+            #         # Alternate between the two dataloaders
+            #         if self.is_dl1_turn:
+            #             batch = next(self.iter1)
+            #         else:
+            #             batch = next(self.iter2)
+                    
+            #         # Switch for the next call
+            #         self.is_dl1_turn = not self.is_dl1_turn
+            #         return batch
+
+            #     def __len__(self):
+            #         return self.length
+
+            import random
+
+            class CombinedDataLoader:
+                def __init__(self, dataloader1, dataloader2):
+                    self.dataloader1 = dataloader1
+                    self.dataloader2 = dataloader2
+                    # The training loop is controlled by max_steps, so length is less critical,
+                    # but we can define it as the max of the two for progress bar accuracy if needed.
+                    self.length = max(len(dataloader1), len(dataloader2)) * 2
+
+                def __iter__(self):
+                    """Creates new iterators for each epoch."""
+                    self.iter1 = iter(self.dataloader1)
+                    self.iter2 = iter(self.dataloader2)
+                    return self
+
+                def __next__(self):
+                    """
+                    Alternates between dataloaders and resets an iterator if it's exhausted.
+                    This prevents caching all batches in memory.
+                    """
+                    # Alternate between dataloaders. Using random.choice is also a great option.
+                    if random.random() < 0.5:
+                        try:
+                            return next(self.iter1)
+                        except StopIteration:
+                            # Dataloader 1 is exhausted, reset it and pull from dataloader 2
+                            self.iter1 = iter(self.dataloader1)
+                            try:
+                                return next(self.iter2)
+                            except StopIteration:
+                                self.iter2 = iter(self.dataloader2)
+                                return next(self.iter2)
+                    else:
+                        try:
+                            return next(self.iter2)
+                        except StopIteration:
+                            # Dataloader 2 is exhausted, reset it and pull from dataloader 1
+                            self.iter2 = iter(self.dataloader2)
+                            try:
+                                return next(self.iter1)
+                            except StopIteration:
+                                self.iter1 = iter(self.dataloader1)
+                                return next(self.iter1)
+
+                def __len__(self):
+                    return self.length
+
+            train_dataset_poke = ForcePromptingDataset_PointForce(
+                video_root_dir="datasets/point-force/train/point_force_23000",
+                csv_path="datasets/point-force/train/point_force_23000.csv",
+                image_size=(args.height, args.width), 
+                stride=(args.stride_min, args.stride_max),
+                sample_n_frames=args.max_num_frames,
+                controlnet_type=args.controlnet_type,
+            )
+            train_dataloader_poke = DataLoader(
+                train_dataset_poke,
+                batch_size=args.train_batch_size,
+                shuffle=True,
+                collate_fn=collate_fn_ForcePromptingDataset_PointForce,
+                num_workers=args.dataloader_num_workers,
+            )
+
+            train_dataset_wind = ForcePromptingDataset_WindForce(
+                video_root_dir="datasets/point-force/train/wind_force_15359",
+                csv_path="datasets/point-force/train/wind_force_15359.csv",
+                image_size=(args.height, args.width), 
+                stride=(args.stride_min, args.stride_max),
+                sample_n_frames=args.max_num_frames,
+                controlnet_type=args.controlnet_type,
+            )
+            train_dataloader_wind = DataLoader(
+                train_dataset_wind,
+                batch_size=args.train_batch_size,
+                shuffle=True,
+                collate_fn=collate_fn_ForcePromptingDataset_WindForce,
+                num_workers=args.dataloader_num_workers,
+            )
+
+            # 2. Prepare the models, optimizer, and INDIVIDUAL dataloaders with accelerator
+            #    This is the key change. We prepare the base dataloaders here.
+            train_dataloader_poke, train_dataloader_wind = accelerator.prepare(
+                train_dataloader_poke, train_dataloader_wind
+            )
+
+            # 3. Combine them into a single logical dataloader
+            train_dataloader = CombinedDataLoader(train_dataloader_poke, train_dataloader_wind)
+            
+            # You'll also need to update the definition of train_dataset for logging purposes
+            # For example, you can create a simple object to hold combined info
+            class CombinedDatasetInfo:
+                def __init__(self, ds1, ds2):
+                    self.ds1 = ds1
+                    self.ds2 = ds2
+                def __len__(self):
+                    return len(self.ds1) + len(self.ds2)
+                    
+            train_dataset = CombinedDatasetInfo(train_dataset_poke, train_dataset_wind)
+
 
 
     if args.skip_training_and_only_generate_val_videos:
