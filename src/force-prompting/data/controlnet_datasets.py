@@ -117,8 +117,15 @@ class ForcePromptingDataset_PointForce(BaseClass):
         self.df['checked'] = self.df[self.media_type].map(lambda x, files=file_names: int(x in files))
         self.df = self.df[self.df['checked'] == True]
 
-        self.min_force = float(self.df["force"].min())
-        self.max_force = float(self.df["force"].max())
+        if "force_obj2" not in self.df.columns: # default behavior from before
+            self.min_force = float(self.df["force"].min())
+            self.max_force = float(self.df["force"].max())
+        elif "force_obj2" in self.df.columns:
+            # import pdb; pdb.set_trace()
+            self.min_force = min(float(self.df["force"].min()), float(self.df["force_obj2"].min()))
+            self.max_force = max(float(self.df["force"].max()), float(self.df["force_obj2"].max()))
+
+
 
         self.length = self.df.shape[0]
 
@@ -129,6 +136,11 @@ class ForcePromptingDataset_PointForce(BaseClass):
         file_name = item[self.media_type]
         force = item['force']
         angle = item['angle']
+        force_obj2 = -1 # set this to a dummy value; if the col isn't in the csv, then it'll stay the same
+        if "force_obj2" in self.df.columns:
+            force_obj2 = item['force_obj2']
+            angle_obj2 = item['angle_obj2']
+
         file_path = os.path.join(self.video_root_dir, file_name)
 
         if self.media_type == "image":
@@ -136,6 +148,10 @@ class ForcePromptingDataset_PointForce(BaseClass):
             file_id = file_name.split(".png")[0]
             x_pos = item["coordx"] / item["width"]
             y_pos = item["coordy"] / item["height"]
+            if "force_obj2" in self.df.columns:
+                x_pos_obj2 = item["coordx_obj2"] / item["width"]
+                y_pos_obj2 = item["coordy_obj2"] / item["height"]
+            
 
         elif self.media_type == "video":
             pixel_values = self.load_pixel_values_video(file_path) # (49, 3, 480, 720) of torch.float32 in [-1, 1]
@@ -179,9 +195,21 @@ class ForcePromptingDataset_PointForce(BaseClass):
             # new_pixel_values_with_blob = torch.clip(new_pixel_values + 10* self.get_gaussian_blob(x=new_x_pos, y=new_y_pos, radius=10, amplitude=1.0, shape=(3, 480, 720)), max=1.0)
             # tensor_to_video_ffmpeg(0.5 + new_pixel_values_with_blob/2, "pixel_values_new_with_blob.mp4", fps=10)
 
-        controlnet_signal = self.load_controlnet_signal(
-            force, angle, x_pos, y_pos,
-        )
+        if force_obj2 == -1: # if it's equal to the dummy value, then we only care about the original force
+            controlnet_signal = self.load_controlnet_signal(
+                force, angle, x_pos, y_pos,
+            )
+        elif force_obj2 > -1:
+            controlnet_signal_obj1 = self.load_controlnet_signal(force, angle, x_pos, y_pos)
+            controlnet_signal_obj2 = self.load_controlnet_signal(force_obj2, angle_obj2, x_pos_obj2, y_pos_obj2)
+            controlnet_signal = controlnet_signal_obj1 + controlnet_signal_obj2
+            print("CONFIRM THAT THE MINIMUM VALUE IS 0 AND THE MAX IS 1...")
+
+            # needed for output filename...
+            force = (force, force_obj2)
+            angle = (angle, angle_obj2)
+            x_pos = (x_pos, x_pos_obj2)
+            y_pos = (y_pos, y_pos_obj2)
 
         return pixel_values, caption, controlnet_signal, force, angle, x_pos, y_pos, file_id
 

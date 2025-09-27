@@ -375,7 +375,13 @@ def do_inference(
             x_pos = val_batch["x_pos"][0]
             y_pos = val_batch["y_pos"][0]
 
-            fname_str = f"file_id_{file_id}__xpos_{x_pos:.2f}__ypos_{y_pos:.2f}__angle_{angle:.2f}__force_{force:.3f}"
+            if not isinstance(force, tuple):
+                # original
+                fname_str = f"file_id_{file_id}__xpos_{x_pos:.2f}__ypos_{y_pos:.2f}__angle_{angle:.2f}__force_{force:.3f}"
+            else:
+                # multi-blob
+                fname_str = f"file_id_{file_id}__xpos_{x_pos[0]:.2f}__ypos_{y_pos[0]:.2f}__angle_{angle[0]:.2f}__force_{force[0]:.3f}__xpos_{x_pos[1]:.2f}__ypos_{y_pos[1]:.2f}__angle_{angle[1]:.2f}__force_{force[1]:.3f}"
+
 
             prompt = val_batch["prompts"][0]
             if model_type in ["baseline_with_append_force_string_prompt", "baseline_finetune_with_append_force_string_prompt"]:
@@ -580,12 +586,26 @@ def do_inference(
                 )
                 min_force = val_dataloader.dataset.min_force
                 max_force = val_dataloader.dataset.max_force
-                normalized_force = (val_batch["force"][0] - min_force) / (max_force - min_force)
+
+                if not isinstance(force, tuple):
+                    # original
+                    normalized_force = (val_batch["force"][0] - min_force) / (max_force - min_force)
+                else:
+                    # multi-blob
+                    normalized_force = (val_batch["force"][0][0] - min_force) / (max_force - min_force)
+                
 
                 if args.controlnet_type == "point_force":
-                    video_with_force_prompt_aesthetic = add_aesthetic_point_force_prompt_to_video(
-                        video, normalized_force, angle, x_pos, 1 - y_pos, num_frames_with_signal=8
-                    )
+                    if not isinstance(force, tuple):
+                        # original
+                        video_with_force_prompt_aesthetic = add_aesthetic_point_force_prompt_to_video(
+                            video, normalized_force, angle, x_pos, 1 - y_pos, num_frames_with_signal=8
+                        )
+                    else:
+                        # multi-blob
+                        video_with_force_prompt_aesthetic = add_aesthetic_point_force_prompt_to_video(
+                            video, normalized_force, angle[0], x_pos[0], 1 - y_pos[0], num_frames_with_signal=8
+                        )
                 elif args.controlnet_type == "wind_force":
                     video_with_force_prompt_aesthetic = add_aesthetic_wind_force_prompt_to_video(
                         video, normalized_force, angle, num_frames_with_signal=49
